@@ -1,0 +1,91 @@
+// CSS VARIABLES
+:root {
+  --s-accent: #003955;
+  --s-accent-hover: #FA744B;
+  --s-blue: #0B0F41;
+  --s-grey: #8C8C8C;
+  --s-bg: #fff;
+  --s-text: #000;
+  --s-line: #dcdfe5;
+  --s-noti: #c00;
+  --s-border: #E0E0E0;
+  --s-border-radius: 10px;
+  --s-shadow: 0px 5px 20px 0px #00000008;
+  --s-box-padding: 15px;
+  --s-heading: "DBheavent", sans-serif; // Try: Maledpan
+  --s-heading-weight: 500;
+  --s-heading-line-height: 1.3;
+  --s-body: "DBheavent", sans-serif;
+  --s-body-line-height: 1.625;
+  --s-space: 16px;
+  --s-site-space: 25px;
+  --s-header-height: 70px;
+  --s-toggle-height: 42px;
+  --s-footer-height: 128px;
+  --s-title-size: 1.5rem;
+  --s-title-height: 120px;
+  --s-title-bg-blur: 20px;
+  --s-title-bg-opacity: 0.7;
+  --nav-font-size: 20px;
+  --nav-font-size-m: 25px;
+  --mega-font-size: 30px;
+  --s-placeholder-size: 20px;
+  --s-footer-size: 20px;
+  --c-transition-hover: .4s ease all;
+  // Typo sizes
+  --f-h1: 50px;
+  --f-h2: 35px;
+  --f-h3: 25px;
+  --f-h4: 22px;
+  --f-h5: 18px;
+  --f-h6: 16px;
+  --f-p: 18px;
+  --f-body: 18px;
+  --f-subtitle: 16px;
+}
+.site-nav-m {
+  --s-bg: #003955;
+  --s-text: #fff;
+  --s-line: rgba(255, 255, 255, .2);
+  // --s-line: rgba(255, 255, 255, .2);
+}
+
+.site-nav-d {
+  font-size: var(--nav-font-size);
+}
+.content-headline {
+  --s-bg: #000;
+  --s-text: #fff;
+}
+.site-footer {
+  --s-bg: #333;
+  --s-text: #fff;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --s-space: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --s-space: 20px;
+    --f-h1: 70px;
+    --f-h2: 60px;
+    --f-h3: 50px;
+    --f-h4: 40px;
+    --f-h5: 30px;
+    --f-h6: 25px;
+    --f-p: 22px;
+    --f-subtitle: 18px;
+    --s-topheader-height: 42px;
+    --s-header-height: 80px;
+    --s-header-height-post: 90px;
+    --s-footer-height: 40px;
+  }
+  .main-header {
+    --s-title-height: 280px;
+    --s-title-size: 55px;
+  }
+}
