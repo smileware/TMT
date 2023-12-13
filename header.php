@@ -19,10 +19,19 @@
     } ?>
     <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'seed' ); ?></a>
     <div id="page" class="site">
-
+        
         <header id="masthead" class="site-header _heading">
+            <div class="top-header">
+                <?php 
+                    // TODO: Menu when different language.
+                    wp_nav_menu( array( 'menu' => 10 ) );
+                ?>
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <?php echo do_shortcode('[wpml_language_switcher type="custom" link_current=1 flags=0 native=1 translated=0][/wpml_language_switcher]'); ?>
+                </div>
+            </div>
             <div class="s-container">
-
                 <div class="site-branding">
                     <div class="site-logo"><?php seed_logo(); ?></div>
                 </div>

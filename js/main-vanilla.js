@@ -52,7 +52,15 @@ document
       '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'
     );
   });
-
+// Desktop Menu - Add Dropdown Toggle on level 2
+document
+  .querySelectorAll(".site-nav-d .sub-menu .menu-item-has-children")
+  .forEach((e) => {
+    e.insertAdjacentHTML(
+      "beforeend",
+      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>'
+    );
+  });
 // Slider
 function createSlider(slider_id, view_m, view_d, center_m, center_d) {
   var slider_wrapper = document.getElementById(slider_id);
@@ -155,3 +163,34 @@ if (sliders) {
     createSlider(slider_id, view_m, view_d, center_m, center_d);
   }
 }
+
+
+
+var lang_switcher = document.querySelectorAll(".language-switcher");
+if(lang_switcher) {
+  lang_switcher.forEach((e) => {
+    var toggle = e.querySelector("ul");
+    if(toggle) { 
+      var target = toggle.querySelector(".wpml-ls-sub-menu");
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutationRecord) {
+          if(target.style.visibility === "" || target.style.visibility === "visible") { 
+            toggle.classList.add("active");
+          }else { 
+            toggle.classList.remove("active");
+          }
+        });    
+      });
+      observer.observe(target, { 
+        attributes: true, 
+        attributeFilter: ['style'] 
+      });
+      // Add Chevdown
+      toggle.querySelector(".wpml-ls-item-toggle").insertAdjacentHTML(
+        "beforeend",
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>'
+      );
+    }
+  });
+}
+

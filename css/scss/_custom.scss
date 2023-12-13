@@ -279,49 +279,64 @@ p {
 
 .language-switcher { 
     > div { 
-        width: 68px;
-        font-size: 20px;
+        width: 70px;
+        font-size: 16px;
+        min-height: var(--s-topheader-height);
+        background-color: var(--s-accent-hover);
+        &:hover, &:active, &:focus{ 
+            .wpml-ls-item-toggle  {
+                background-color: var(--s-accent-hover);
+                color: white;
+            }
+        }
     }
     ul.active { 
         .wpml-ls-item-toggle { 
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
+            background-color: var(--s-accent-hover);
             svg { 
                transform: scaleY(-1);
             }
         }
     }
     .wpml-ls-item {
-        width: 68px;
+        width: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 400;
         .wpml-ls-item-toggle { 
             width: 100%;
-            color: var(--s-grey);
+            color: #fff;
             border: 0;
-            border-radius: 25px;
-            background-color: #F2F2F2;
+            background-color: var(--s-accent-hover);
+            min-height: var(--s-topheader-height);
+            align-items: center;
+            display: flex;
+            padding-left: 15px;
             svg { 
                 position: absolute;
-                right: 8px;
-                top: 7px;
+                right: 20px;
+                top: 14px;
+                width: 12px;
+                height: 12px;
             }
         }
         .wpml-ls-item-toggle::after { 
             display: none;
         }
+        .wpml-ls-sub-menu {
+            border-top: 1px solid #fff;
+        }
         .wpml-ls-link { 
+            align-items: center;
+            display: flex;
+            min-height: var(--s-topheader-height);
             width: 100%;
-            color: var(--s-grey);
-            background-color: #F2F2F2;
+            color: #fff;
             border: 0;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
+            background-color: var(--s-accent-hover);
+            padding-left: 20px;
         }
     }
 }
