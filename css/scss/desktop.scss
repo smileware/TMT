@@ -34,7 +34,8 @@ body.headbar-d {
   left: auto;
   transform: none;
   img {
-    max-height: var(--s-header-height);
+    height: var(--s-header-height);
+    width: 70px;
   }
 }
 .site-title {

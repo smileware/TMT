@@ -21,7 +21,7 @@
     <div id="page" class="site">
         
         <header id="masthead" class="site-header _heading">
-            <div class="top-header">
+            <div class="top-header _desktop">
                 <?php 
                     // TODO: Menu when different language.
                     wp_nav_menu( array( 'menu' => 10 ) );
@@ -36,6 +36,12 @@
                     <div class="site-logo"><?php seed_logo(); ?></div>
                 </div>
 
+                <!-- Language Switcher -->
+                <div class="language-switcher language-switcher-m _mobile">
+                    <?php echo do_shortcode('[wpml_language_switcher type="custom" link_current=1 flags=0 native=1 translated=0][/wpml_language_switcher]'); ?>
+                </div>
+
+
                 <div class="site-toggle"><b></b></div>
 
                 <nav id="site-navigation" class="site-nav-d _desktop">
@@ -45,6 +51,7 @@
             <nav id="site-nav-m" class="site-nav-m">
                 <div class="s-container">
                     <?php wp_nav_menu( array( 'theme_location' => 'mobile', 'menu_id' => 'mobile-menu' ) ); ?>
+                    <?php wp_nav_menu( array( 'menu' => 10 ) ); ?>
                 </div>
             </nav>
         </header>

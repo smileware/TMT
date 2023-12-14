@@ -12,12 +12,11 @@ document.addEventListener(
         addClass("#page", "show-nav");
       }
     }
-    if (event.target.matches("#site-nav-m .menu-item-has-children > svg")) {
-      if (event.target.parentNode.classList.contains("active")) {
-        event.target.parentNode.classList.remove("active");
-      } else {
-        event.target.parentNode.classList.add("active");
-      }
+    if (event.target.matches("#site-nav-m .menu-item-has-children > .submenu-toggle")) {
+      // Toggle the 'active' class on the parent of the clicked element
+      event.target.parentNode.classList.toggle("active");
+      // Stop the event from propagating up to parent elements
+      event.stopPropagation();
     }
     // Close menu on click (useful for One Page Website)
     if (event.target.matches("#site-nav-m a")) {
@@ -49,7 +48,7 @@ document
   .forEach((e) => {
     e.insertAdjacentHTML(
       "beforeend",
-      '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'
+      '<div class="plus submenu-toggle"><b></b></div>'
     );
   });
 // Desktop Menu - Add Dropdown Toggle on level 2

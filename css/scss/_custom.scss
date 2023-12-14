@@ -340,6 +340,48 @@ p {
         }
     }
 }
+.language-switcher-m { 
+    position: absolute;
+    top: 14px;
+    > div { 
+        width: 50px;
+        font-size: 20px;
+        min-height: 35px;
+        background-color: white;
+        &:hover, &:active, &:focus{ 
+            .wpml-ls-item-toggle  {
+                background-color: white;
+                color: var(--s-navy);
+            }
+        }
+    }
+    ul.active { 
+        .wpml-ls-item-toggle { 
+            background-color: white;
+        }
+    }
+    .wpml-ls-item {
+        width: 50px;
+        font-weight: 500;
+        .wpml-ls-item-toggle { 
+            background-color: white;
+            color: var(--s-navy);
+            min-height: 35px;
+            padding-left: 0;
+            svg { 
+                right: 16px;
+                top: 12px;
+            }
+        }
+        .wpml-ls-link { 
+            min-height: 35px;
+            background-color: var(--s-navy);
+            padding-left: 0px;
+            padding: 0;
+            justify-content: center;
+        }
+    }
+}
 
 /*
     ######     #     #####  ### #     #    #    ####### ### ####### #     # 
