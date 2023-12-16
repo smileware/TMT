@@ -312,3 +312,24 @@ body.headbar-d {
     }
   }
 }
+
+
+/* == FOOTER == */
+.footer-menu-links { 
+  .footer-menu-item { 
+    font-size: 20px;
+  }
+}
+.site-footer {
+  > .s-container { 
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0;
+  }
+  .site-info-menu { 
+    text-align: right;
+  }
+}
+.site-info { 
+  margin-top: 0px;
+}

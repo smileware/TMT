@@ -95,87 +95,6 @@ add_action('after_setup_theme', 'seed_content_width', 0);
 function seed_widgets_init()
 {
     register_sidebar(array(
-        'name'          => esc_html__('Right Sidebar', 'seed'),
-        'id'            => 'rightbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Left Sidebar', 'seed'),
-        'id'            => 'leftbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Shop Sidebar', 'seed'),
-        'id'            => 'shopbar',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Home Banner', 'seed'),
-        'id'            => 'home_banner',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h1 class="widget-title">',
-        'after_title'   => '</h1>',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Page Banner', 'seed'),
-        'id'            => 'page_banner',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Action', 'seed'),
-        'id'            => 'action',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Mobile Menu', 'seed'),
-        'id'            => 'mobile_menu',
-        'description'   => '',
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Headbar Mobile', 'seed'),
-        'id'            => 'headbar_m',
-        'description'   => '',
-        'before_widget' => '<section id="%1$s" class="head-widget %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
-        'name'          => esc_html__('Headbar Desktop', 'seed'),
-        'id'            => 'headbar_d',
-        'description'   => '',
-        'before_widget' => '<section id="%1$s" class="head-widget %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<!--',
-        'after_title'   => '-->',
-    ));
-    register_sidebar(array(
         'name'          => esc_html__('Footbar', 'seed'),
         'id'            => 'footbar',
         'description'   => '',
@@ -355,6 +274,27 @@ function acf_menu_id() {
                 'src' => 'menu-alt3',
             ),
             'keywords' => array('news')
+        )
+    );
+}
+
+/* === Menu Links Block === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_menu_links' );
+}
+function acf_menu_links() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Menu Links',
+            'title' => 'Menu Links',
+            'description' => __('Display alll menu repeater'),
+            'render_template' => 'template-parts/blocks/menu-links.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'menu-alt3',
+            ),
+            'keywords' => array('menu')
         )
     );
 }
