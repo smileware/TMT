@@ -324,7 +324,7 @@ body.headbar-d {
   > .s-container { 
     justify-content: space-between;
     flex-direction: row;
-    padding: 0;
+    padding: 0 25px;
   }
   .site-info-menu { 
     text-align: right;
@@ -332,4 +332,32 @@ body.headbar-d {
 }
 .site-info { 
   margin-top: 0px;
+}
+
+/*
+           ##           
+   ####   #  #    ####  
+  #        ##    #      
+   ####   ###     ####  
+       # #   # #      # 
+  #    # #    #  #    # 
+   ####   ###  #  ####  
+*/
+.ss-section { 
+  .ss-section-title { 
+    font-size: 70px;
+  }
+  .ss-left { 
+    padding-left: calc((100% - 687.5px) +  35px);
+    padding-right: 50px;
+    .ss-item { 
+      font-size: 35px;
+    }
+  }
+  .ss-right { 
+    height: 650px;
+    img {
+      height: 650px;
+    }
+  }
 }

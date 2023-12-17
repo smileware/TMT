@@ -298,3 +298,27 @@ function acf_menu_links() {
         )
     );
 }
+
+
+
+
+/* === Menu Links Block === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_service_and_solution' );
+}
+function acf_service_and_solution() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Service & Solution',
+            'title' => 'Service & Solution',
+            'description' => __('Display selected service & solution'),
+            'render_template' => 'template-parts/blocks/service-and-solution.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'hammer',
+            ),
+            'keywords' => array('menu')
+        )
+    );
+}

@@ -912,3 +912,62 @@ body.category .content-item .cat-links {
   color: var(--s-accent);  
   margin-top: 20px;
 }
+
+
+/*
+           ##           
+   ####   #  #    ####  
+  #        ##    #      
+   ####   ###     ####  
+       # #   # #      # 
+  #    # #    #  #    # 
+   ####   ###  #  ####  
+*/
+.ss-section { 
+  margin: 0;
+  grid-gap: 0;
+  .ss-section-title { 
+    color: var(--s-accent);
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .ss-left { 
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    .ss-item { 
+      display: block;
+      font-size: 28px;
+      font-weight: 500;
+      color: #333;
+      border-bottom: 1px solid #E0E0E0;
+      padding: 10px 0;
+      &:last-child { 
+        border-bottom: none;
+      }
+      &.active { 
+        color: var(--s-accent-hover);
+      }
+    }
+  }
+  .ss-right { 
+    position: relative;
+    height: 400px;
+    img {
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+      position: absolute;
+      height: 400px;
+      width: 100%;
+      object-fit: cover;
+      &.active { 
+        opacity: 1;
+      }
+    }
+  }
+}
