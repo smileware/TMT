@@ -322,3 +322,85 @@ function acf_service_and_solution() {
         )
     );
 }
+
+/* === Menu Links Block === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_stock' );
+}
+function acf_stock() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Stock',
+            'title' => 'Stock',
+            'description' => __('Display stock infomation'),
+            'render_template' => 'template-parts/blocks/stock.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'chart-area',
+            ),
+            'keywords' => array('menu')
+        )
+    );
+}
+
+
+function fetch_stock_information() {
+
+    $transient_key = 'stock_information_cache';
+    $cached_data = get_transient($transient_key);
+
+    try { 
+        $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';
+        $section = file_get_contents($url);
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($section);
+        $finder = new DomXPath($dom);
+
+        $classname = "quote-market-lastInfo";
+        $spaner = $finder->query("//*[contains(@class, '$classname')]");
+        $date = $spaner->item(1)->nodeValue;
+        $date = str_replace('Last Update :', '', $date);
+        $timestamp = strtotime($date);
+        $localized_date = date_i18n('d M Y H:i:s', $timestamp);
+        // ราคาเปิด
+        $classopen = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+        $open = $finder->query("//*[contains(@class, '$classopen')]");
+        $openvalue = $open->item(5)->nodeValue;
+        $openvalue = str_replace('Open', '', $openvalue);
+        // ราคาปิด
+        $classclosing = "value text-white mb-0 me-2 lh-1";
+        $closing = $finder->query("//*[contains(@class, '$classclosing')]");
+        $closingvalue = $closing->item(0)->nodeValue;
+        // ราคาก่อนหน้า
+        $classprior = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+        $prior = $finder->query("//*[contains(@class, '$classprior')]");
+        $priorvalue = $prior->item(4)->nodeValue;
+        $priorvalue = str_replace('Prior', '', $priorvalue);
+        // เปลี่ยนแปลง
+        $classpercent = "d-flex mb-0 pb-2";
+        $percent = $finder->query("//*[contains(@class, '$classpercent')]");
+        $percentvalue = $percent->item(0)->nodeValue;
+
+        $value = array(
+            'stock_date' => trim($localized_date) , 
+            'stock_date_en' => trim($date), 
+            'stock_price' => trim($closingvalue),
+            'stock_change' => trim($percentvalue),
+            'stock_open' =>  $openvalue,
+            'stock_prior' =>  $priorvalue
+        );
+
+        set_transient($transient_key, $value, HOUR_IN_SECONDS);
+        foreach ($value as $field_key => $field_value) {
+            if (!empty(trim($field_value))) {
+                update_field($field_key, $field_value, 'option');
+            }
+        }   
+
+    }catch (Exception $e) {
+        echo $e;
+    }
+}
+fetch_stock_information();

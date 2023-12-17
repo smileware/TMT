@@ -361,3 +361,44 @@ body.headbar-d {
     }
   }
 }
+
+
+/*
+   ####  #####  ####   ####  #    # 
+  #        #   #    # #    # #   #  
+   ####    #   #    # #      ####   
+       #   #   #    # #      #  #   
+  #    #   #   #    # #    # #   #  
+   ####    #    ####   ####  #    # 
+*/
+.stock-homepage { 
+  .title { 
+    font-size: 40px;
+  }
+  .logo { 
+    text-align: right;
+    img { 
+      width: 108px;
+    }
+  }
+  
+  .main-stock {
+    font-size: 70px;
+  }
+  .s-grid.section-1 { 
+    margin-bottom: 60px;
+    grid-template-columns: 3fr 2fr;
+  }
+  .s-grid.section-2 { 
+    margin-bottom: 15px;
+  }
+  .s-grid { 
+    grid-template-columns: 3fr 2fr;
+  }
+  label, .value {
+    font-size: 30px;
+  }
+  .value, .price { 
+    text-align: left;
+  }
+}
