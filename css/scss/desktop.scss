@@ -402,3 +402,25 @@ body.headbar-d {
     text-align: left;
   }
 }
+
+/*
+ ####  #    # #  ####  #    #    #    # ###### #    # #    # 
+#    # #    # # #    # #   #     ##  ## #      ##   # #    # 
+#    # #    # # #      ####      # ## # #####  # #  # #    # 
+#  # # #    # # #      #  #      #    # #      #  # # #    # 
+#   #  #    # # #    # #   #     #    # #      #   ## #    # 
+ ### #  ####  #  ####  #    #    #    # ###### #    #  ####  
+*/
+.quick-menu {
+  grid-gap: 20px;
+  .quick-menu-item { 
+    min-height: 205px;
+    svg { 
+      margin-bottom: 20px;
+      width: 53px;
+    }
+    .quick-menu-title { 
+      font-size: 25px;
+    }
+  }
+}

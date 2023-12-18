@@ -344,6 +344,27 @@ function acf_stock() {
     );
 }
 
+/* === Quick Menu Block === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_quick_menu' );
+}
+function acf_quick_menu() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Quick Menu',
+            'title' => 'Quick Menu',
+            'description' => __('Display Quick Menu'),
+            'render_template' => 'template-parts/blocks/quick-menu.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'grid-view',
+            ),
+            'keywords' => array('menu')
+        )
+    );
+}
+
 
 function fetch_stock_information() {
 

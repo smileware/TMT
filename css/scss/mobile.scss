@@ -1028,3 +1028,39 @@ body.category .content-item .cat-links {
     margin-bottom: 10px;
   }
 }
+
+
+/*
+ ####  #    # #  ####  #    #    #    # ###### #    # #    # 
+#    # #    # # #    # #   #     ##  ## #      ##   # #    # 
+#    # #    # # #      ####      # ## # #####  # #  # #    # 
+#  # # #    # # #      #  #      #    # #      #  # # #    # 
+#   #  #    # # #    # #   #     #    # #      #   ## #    # 
+ ### #  ####  #  ####  #    #    #    # ###### #    #  ####  
+*/
+.quick-menu {
+  grid-gap: 14px;
+  .quick-menu-item { 
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--s-accent);
+    min-height: 130px;
+    transition: var(--c-transition-hover);
+    svg { 
+      color: white;
+      margin-bottom: 5px;
+      width: 35px;
+    }
+    .quick-menu-title { 
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &:hover { 
+      background-color: var(--s-accent-hover);
+    }
+  }
+}
