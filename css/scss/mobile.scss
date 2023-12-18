@@ -1064,3 +1064,64 @@ body.category .content-item .cat-links {
     }
   }
 }
+
+
+/*
+  #####   ####  #    # #    # #       ####    ##   #####  
+  #    # #    # #    # ##   # #      #    #  #  #  #    # 
+  #    # #    # #    # # #  # #      #    # #    # #    # 
+  #    # #    # # ## # #  # # #      #    # ###### #    # 
+  #    # #    # ##  ## #   ## #      #    # #    # #    # 
+  #####   ####  #    # #    # ######  ####  #    # #####  
+*/
+.file-download { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  .file-name { 
+    flex-wrap: wrap;
+    h4 { 
+      color: var(--s-accent);
+      font-size: 25px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }
+  .file-btns  {
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    .button { 
+      font-size: 18px;
+      font-weight: 400;
+      height: 40px;
+      padding: 6px 10px;
+      margin: 0 30px;
+      text-transform: uppercase;
+      svg { 
+        margin-right: 10px;
+      }
+    }
+    .btn-view { 
+      color: #333;
+      &:hover { 
+        color: var(--s-accent-hover);
+      }
+    }
+    .divider-vertical { 
+      background-color: #E0E0E0;
+      height: 27px;
+      width: 1px;
+    }
+    .btn-download {
+      color: var(--s-accent-hover);
+      transition: var(--c-transition-hover);
+      border-radius: 50px;
+      &:hover { 
+        background-color: var(--s-accent-hover);
+        color: white;
+      }
+    }
+  }
+}

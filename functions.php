@@ -366,6 +366,27 @@ function acf_quick_menu() {
 }
 
 
+/* === Quick Menu Block === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_file_download' );
+}
+function acf_file_download() { 
+    acf_register_block_type(
+        array(
+            'name' => 'File Download',
+            'title' => 'File Download',
+            'description' => __('Display File Download'),
+            'render_template' => 'template-parts/blocks/file-download.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'download',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 function fetch_stock_information() {
 
     $transient_key = 'stock_information_cache';
