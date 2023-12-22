@@ -197,7 +197,17 @@ body.headbar-d {
 
 /* CONTENT ITEM */
 .content-item {
- 
+  &.-card {
+    .pic {
+      height: 270px;
+      img {
+        height: 270px;
+      }
+    }
+    .entry-link a{ 
+      font-size: 18px;
+    }
+  }
 }
 
 .main-body {
@@ -444,5 +454,33 @@ body.headbar-d {
     .button { 
       margin: 0 10px;
     }
+  }
+}
+
+/*
+  #####   ##   #####  
+    #    #  #  #    # 
+    #   #    # #####  
+    #   ###### #    # 
+    #   #    # #    # 
+    #   #    # #####  
+*/
+.latest-news { 
+  padding-right: var(--s-site-space);
+}
+.tab-container {
+  justify-content: space-between;
+  padding-right: 0;
+  .tab-item-container { 
+    .tab-item { 
+      min-width: 96px;
+      margin-right: 30px;
+      font-size: 18px;
+    }
+  }
+}
+.tab-content-container { 
+  .s-grid { 
+    grid-gap: 20px;
   }
 }

@@ -387,6 +387,27 @@ function acf_file_download() {
     );
 }
 
+/* === Lastest News === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_latest_news' );
+}
+function acf_latest_news() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Lastest News',
+            'title' => 'Lastest News',
+            'description' => __('Display Lastest News'),
+            'render_template' => 'template-parts/blocks/lastest-news.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'admin-site-alt2',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 function fetch_stock_information() {
 
     $transient_key = 'stock_information_cache';

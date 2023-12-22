@@ -1,6 +1,6 @@
 <?php 
     $title = get_field("service_&_solution_section_title");
-    $items = get_field("service_&_solution_item");
+    $ss_items = get_field("service_&_solution_item");
 ?>
 
 <div class="ss-section s-grid -d2">
@@ -9,7 +9,7 @@
 
         <?php 
             $check = 1; 
-            foreach ($items as $item){
+            foreach ($ss_items as $item){
                 $name = $item['ss_name'];
                 $url = $item['ss_link'];
                 $img = $item['ss_image'];
@@ -30,7 +30,7 @@
     <div class="ss-right">
         <?php 
             $check = 1; 
-            foreach ($items as $item){
+            foreach ($ss_items as $item){
                 $img = $item['ss_image'];
                 $name = $item['ss_name'];
                 $is_selected = $item['ss_is_default_selected'];
@@ -48,13 +48,13 @@
 </div>
 
 <script>
-  const items = document.querySelectorAll('.ss-left .ss-item');
+  const ss_items = document.querySelectorAll('.ss-left .ss-item');
     const images = document.querySelectorAll('.ss-right img');
     let activeIndex = -1; // Tracks the index of the currently active item
 
-    items.forEach((item, index) => {
+    ss_items.forEach((item, index) => {
         item.addEventListener('mouseenter', function() {
-            items.forEach(it => it.classList.remove('active'));
+            ss_items.forEach(it => it.classList.remove('active'));
             images.forEach(img => img.classList.remove('active'));
 
             item.classList.add('active');

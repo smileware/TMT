@@ -193,3 +193,40 @@ if(lang_switcher) {
   });
 }
 
+// Tab of News section on Homepage.
+function showTabContent(catId) {
+  var allElements = document.querySelectorAll('.latest-news .s-grid, .latest-news .s-slider');
+  if (allElements) {
+    allElements.forEach(function(element) {
+      element.style.display = 'none';
+    });
+  }
+  var gridElement = document.getElementById('grid-' + catId);
+  var sliderElement = document.querySelector('[data-slider="slider-' + catId + '"]');
+  if (gridElement) {
+    gridElement.style.display = 'grid';
+  }
+  if (sliderElement) {
+    sliderElement.style.display = 'block';
+  }
+}
+
+var defaultActiveTab = document.querySelector('.latest-news .tab-item.active');
+if (defaultActiveTab) {
+  var defaultCatId = defaultActiveTab.getAttribute('data-cat');
+  showTabContent(defaultCatId);
+}
+
+var tabs = document.querySelectorAll('.latest-news .tab-item');
+if (tabs) {
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) {
+          t.classList.remove('active');
+      });
+      this.classList.add('active');
+      var catId = this.getAttribute('data-cat');
+      showTabContent(catId);
+    });
+  });
+}
