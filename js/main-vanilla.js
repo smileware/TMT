@@ -230,3 +230,71 @@ if (tabs) {
     });
   });
 }
+
+var history = document.querySelectorAll('.history');
+if (history.length > 0) {
+    var sections = document.querySelectorAll('.history .s-grid');
+
+    function updateActiveSections() {
+        let activeIndex = -1;
+        sections.forEach((section, index) => {
+            var rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.5 && rect.bottom > 0) {
+                activeIndex = index;
+            }
+        });
+        sections.forEach((section, index) => {
+            if (index <= activeIndex) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        updateProgress();
+    }
+    function updateProgress() {
+      var dots = document.querySelectorAll('.history .dot');
+      var progress = document.querySelector('.history .progress');
+      var historyElement = document.querySelector('.history');
+      if (!progress || dots.length === 0 || !historyElement) return;
+  
+      var historyRect = historyElement.getBoundingClientRect();
+      var firstDotRect = dots[0].getBoundingClientRect();
+      var activeIndex = -1;
+  
+      for (let i = 0; i < sections.length; i++) {
+          if (sections[i].classList.contains('active')) {
+              activeIndex = i;
+          }
+      }
+  
+      if (activeIndex !== -1 && activeIndex < dots.length - 1) {
+          var nextDotRect = dots[activeIndex + 1].getBoundingClientRect();
+          var progressHeight = nextDotRect.bottom - historyRect.top - (firstDotRect.top - historyRect.top);
+          progress.style.height = `${progressHeight}px`;
+      }else if (activeIndex === -1) {
+          progress.style.height = '0px';
+      }
+    }
+
+    function handleScroll(event) {
+        updateActiveSections();
+    }
+
+    document.addEventListener('scroll', handleScroll);
+    updateActiveSections(); // Initial update when the page loads
+
+    function updateTimelineLineHeight() {
+      var timelineLine = document.querySelector('.history .timeline-line');
+      var dots = document.querySelectorAll('.history .dot');
+      if (!timelineLine || dots.length === 0) return;
+
+      var lastDotRect = dots[dots.length - 1].getBoundingClientRect();
+      var timelineLineTop = timelineLine.getBoundingClientRect().top;
+      var heightToLastDot = lastDotRect.bottom - timelineLineTop;
+
+      timelineLine.style.height = `${heightToLastDot}px`;
+    }
+    updateTimelineLineHeight();
+    window.addEventListener('resize', updateTimelineLineHeight);
+}

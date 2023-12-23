@@ -408,6 +408,48 @@ function acf_latest_news() {
     );
 }
 
+/* === Lastest Featured Single Product === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_featured_single_product' );
+}
+function acf_featured_single_product() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Feature Single Product',
+            'title' => 'Feature Single Product',
+            'description' => __('Display Feature Single Product'),
+            'render_template' => 'template-parts/blocks/featured-product.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'star-filled',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+/* === History === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_history' );
+}
+function acf_history() { 
+    acf_register_block_type(
+        array(
+            'name' => 'History',
+            'title' => 'History',
+            'description' => __('Display History'),
+            'render_template' => 'template-parts/blocks/history.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'store',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 function fetch_stock_information() {
 
     $transient_key = 'stock_information_cache';

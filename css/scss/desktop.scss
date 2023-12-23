@@ -484,3 +484,60 @@ body.headbar-d {
     grid-gap: 20px;
   }
 }
+
+/*
+  #    # #  ####  #####  ####  #####  #   # 
+  #    # # #        #   #    # #    #  # #  
+  ###### #  ####    #   #    # #    #   #   
+  #    # #      #   #   #    # #####    #   
+  #    # # #    #   #   #    # #   #    #   
+  #    # #  ####    #    ####  #    #   #   
+*/
+.history { 
+  padding-right: var(--s-site-space);
+  .s-grid {
+    &:nth-child(odd) { 
+      .history-detail { 
+        padding-right: 120px;
+      }
+    }
+    &:nth-child(even) { 
+      .history-detail { 
+        padding-left: 120px;
+      }
+    }
+  }
+  .timeline-line {
+    left: 50%;
+  }
+  .dot {
+    left: calc(50% - 7px);
+  }
+  .history-milestone { 
+    padding-left: 100px;
+    order: inherit;
+    h3 { 
+      font-size: 80px;
+      margin: 0;
+      margin-top: inherit;
+      top: inherit;
+      position: inherit;
+    }
+  }
+  .history-detail { 
+    order: inherit;
+    padding-top: 40px;
+    .history-pinpoint {
+      margin-top: 50px;
+      .description p{
+        font-size: 25px;
+      }
+      > div { 
+        font-size: 25px;
+        .year { 
+          min-width: 50px;
+        }
+      }
+    }
+  }
+}
