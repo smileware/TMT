@@ -208,34 +208,51 @@ body.headbar-d {
       font-size: 18px;
     }
   }
+  &.-list {
+    flex-direction: row;
+    .pic {
+      width: 50%;
+      padding-right: 40px;
+      border-radius: var(--s-border-radius) 0 0 var(--s-border-radius);
+      height: 350px;
+      img {
+        border-radius: var(--s-border-radius) 0 0 var(--s-border-radius);
+        height: 350px;
+      }
+    }
+    .info {
+      width: 50%;
+      padding: var(--s-box-padding) 40px;
+      .entry-meta { 
+        font-size: 22px;
+      }
+      .entry-title { 
+        font-size: 35px;
+      }
+    }
+    .entry-summary {
+      p { 
+        -webkit-line-clamp: 6;
+      }
+    }
+  }
 }
 
-.main-body {
-  &.-rightbar {
-    display: flex;
-    align-items: stretch;
-    .widget-area {
-      width: 240px;
-      padding-left: var(--s-space);
-    }
-    .content-area {
-      width: calc(100% - 240px);
-    }
+
+.content-single { 
+  .entry-title { 
+    margin-bottom: 10px;
+    font-size: 45px;
   }
-  &.-leftbar {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: stretch;
-    .widget-area {
-      width: 240px;
-      padding-right: var(--s-space);
-    }
-    .content-area {
-      width: calc(100% - 240px);
-    }
+}
+
+
+.related-container { 
+  .s-container { 
+    padding-right:  var(--s-site-space);
   }
-  &.-leftrightbar {
-    display: flex;
+  .relate-title { 
+    font-size: 45px;
   }
 }
 
@@ -536,6 +553,42 @@ body.headbar-d {
         font-size: 25px;
         .year { 
           min-width: 50px;
+        }
+      }
+    }
+  }
+}
+
+/*
+    ##   #    #   ##   #####  #####  
+   #  #  #    #  #  #  #    # #    # 
+  #    # #    # #    # #    # #    # 
+  ###### # ## # ###### #####  #    # 
+  #    # ##  ## #    # #   #  #    # 
+  #    # #    # #    # #    # #####  
+*/
+.taxonomy-banner { 
+  > .s-container { 
+    min-height: 200px;
+  }
+  .taxonomy-title { 
+    font-size: 60px;
+  }
+}
+.tax-award-type { 
+  .s-grid { 
+    grid-template-columns: 1fr repeat(2, minmax(0, 1fr));
+    padding-top: 60px;
+    grid-gap: 40px 20px;
+    > .content-item:first-child  { 
+      grid-column: span 3;
+      margin-bottom: 50px;
+    }
+    .content-item.-card { 
+      .pic {
+        height: inherit;
+        img { 
+          height: inherit;
         }
       }
     }

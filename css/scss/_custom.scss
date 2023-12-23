@@ -419,53 +419,40 @@ p {
     justify-content: center;
     align-items: center;
     padding: 20px 0;
+    margin-bottom: 100px;
     a,
     span {
       font-size: 22px;
       font-weight: 400;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: #828282;
-      margin: 30px 8px 0;
-      border: 1px solid #F2F2F2;
+      color: #4f4f4f;
+      margin: 30px 12px 0;
+      padding: 0 4px;
+      border-bottom: 2px solid transparent;
       &.current, &.active { 
-        color: #333;
-        border: 1px solid #333;
-        &:hover { 
-            background-color: var(--s-accent-hover);
-            color: white;
-            border: 1px solid var(--s-accent-hover);
-        }
-      }
-      &:first-child { 
-        margin-left: 0;
+        color: var(--s-accent-hover);
+        background-color: transparent;
+        border-bottom: 2px solid var(--s-accent-hover);
       }
       &:hover { 
-            background-color: var(--s-accent-hover);
-            color: white;
-            border: 1px solid var(--s-accent-hover);
+            color: var(--s-accent-hover);
         }
     }
     .next, .prev { 
-        border: 1px solid var(--s-accent);
-        width: 40px;
-        height: 40px;
-        border-radius: 50px;
-        color: #fff;
-        background-color: var(--s-accent);
+        color: #BDBDBD;
+        margin: 30px 18px 0;
         svg { 
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
         &:hover { 
-            background-color: var(--s-accent-hover);
-            border-color: var(--s-accent-hover);
-            color: white;
+            color: var(--s-accent-hover);
         }
+    }
+    .prev { 
+        margin-left: 0;
+    }
+    .next {
+        margin-right: 0;
     }
     a {
       transition: 0.3s;
@@ -880,11 +867,17 @@ p {
     #    # #   #  #      #    # #    # #    # #   #  #    # #    # #    # 
     #####  #    # ###### #    # #####   ####  #    #  ####  #    # #####  
 */
+.breadcrumb-container{ 
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 .rank-math-breadcrumb { 
     color: #828282;
-    font-size: 18px;
     font-weight: 400;
-    p {margin:0}
+    p {
+        margin:0; 
+        font-size: 18px;
+    }
     a {
         color: #828282;
     }

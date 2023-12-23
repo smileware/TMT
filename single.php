@@ -19,18 +19,17 @@ get_header(); ?>
 
 <div class="site-single <?php echo($singleclass);?>">
 
-    <?php seed_banner_title(get_the_ID()); ?>
+   <div class="s-container breadcrumb-container">
+        <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
+	</div>
 
     <div class="s-container main-body <?php echo '-'.$GLOBALS['s_blog_layout_single']; ?>">
         <div id="primary" class="content-area">
-            <main id="main" class="site-main -hide-title">
-
-                <?php get_template_part( 'template-parts/content-single', get_post_type() ); ?>
-
-                <?php if ( comments_open() || get_comments_number() ) { comments_template(); } ?>
-
+            <main id="main" class="site-main ">
+                <?php 
+					get_template_part( 'template-parts/content-single', get_post_type() ); 
+				?>
                 <?php wp_reset_postdata(); ?>
-
             </main>
         </div>
 

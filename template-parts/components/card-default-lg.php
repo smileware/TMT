@@ -1,9 +1,19 @@
 <?php
 /**
- * Loop Name: Content Card
+ * Loop Name: Content List
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class('content-item -card'); ?>>
+<?php
+/**
+ * Template part for displaying posts.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package seed
+ */
+
+?>
+<article id="post-<?php the_ID(); ?>" <?php post_class('content-item -list'); ?>>
     <div class="pic">
         <a href="<?php the_permalink(); ?>" title="Permalink to <?php the_title_attribute(); ?>" rel="bookmark">
             <?php if(has_post_thumbnail()) { the_post_thumbnail('full');} else { echo '<img src="' . esc_url( get_template_directory_uri()) .'/img/thumb.jpg" alt="'. get_the_title() .'" />'; }?>
@@ -11,35 +21,19 @@
     </div>
     <div class="info">
         <header class="entry-header">
-            <div class="entry-meta">
+             <div class="entry-meta">
                 <?php 
                     seed_posted_on(false); 
-                    echo '<span> | </span>';
-                    switch(get_post_type()) { 
-                        case "post":
-                            seed_posted_cats(false);
-                            break;
-                        case "award":
-                            $terms = get_the_terms(get_the_ID(), 'award-type');
-                            $entry_cat = "";
-                            if( $terms ) { 
-                                foreach( $terms as $term ) {
-                                    $entry_cat .= '<span class=" _heading">' . $term->name . '</span>';
-                                }
-                            }   
-                            echo $entry_cat;
-                            break;
-                        default:
-                            seed_posted_cats(false);
-                            break;
-                    }
-                   
                 ?>
             </div>
             <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
         </header>
 
-        <div class="entry-link">
+        <div class="entry-summary">
+            <?php the_excerpt();?>
+        </div>
+
+        <div class="entry-link _mobile">
             <a href="<?php the_permalink(); ?>" title="Permalink to <?php the_title_attribute(); ?>" rel="bookmark">
                 <?php _e("อ่านเพิ่มเติม", "wpml_theme"); ?>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="8" viewBox="0 0 19 8" fill="none">
@@ -48,5 +42,9 @@
                 </svg>
             </a>
         </div>
+
+        <footer class="entry-footer">
+            <?php seed_entry_footer(); ?>
+        </footer>
     </div>
 </article>

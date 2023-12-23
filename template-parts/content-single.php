@@ -5,44 +5,116 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('content-single'); ?>>
+    <div class="pic">
+        <?php if(has_post_thumbnail()) { the_post_thumbnail('full');} else { echo '<img src="' . esc_url( get_template_directory_uri()) .'/img/thumb.jpg" alt="'. get_the_title() .'" />'; }?>
+    </div>
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
-        <?php if ( 'post' === get_post_type() ) : ?>
-        <div class="entry-meta">
-            <?php seed_posted_on(); ?>
-            <?php seed_posted_by(); ?>
-            <?php seed_posted_cats(); ?>
-        </div>
-        <?php endif; ?>
     </header>
-
     <div class="entry-content">
         <?php the_content(); ?>
-
         <?php seed_posted_tags(); ?>
-
-        <?php if($GLOBALS['s_blog_profile'] == 'enable') :?>
-        <div class="entry-author">
-            <div class="pic">
-                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
-                    rel="author"><?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'author_bio_avatar_size', 160 ) ); ?></a>
-            </div>
-            <div class="info">
-                <h2 class="name">
-                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
-                        rel="author"><?php the_author(); ?></a>
-                </h2>
-                <?php if(get_the_author_meta( 'description' )) {
-                    echo '<div class="desc">'. get_the_author_meta( 'description' ). '</div>';
-                }
-                ?>
-            </div>
-        </div>
-        <?php endif; ?>
     </div>
 
+    <div class="entry-meta">
+        <?php 
+            seed_posted_on(false); 
+            echo '<span> | </span>';
+            switch(get_post_type()) { 
+                case "post":
+                    seed_posted_cats(false);
+                    break;
+                case "award":
+                    $terms = get_the_terms(get_the_ID(), 'award-type');
+                    $entry_cat = "";
+                    if( $terms ) { 
+                        foreach( $terms as $term ) {
+                            $entry_cat .= '<span class=" _heading">' . $term->name . '</span>';
+                        }
+                    }   
+                    echo $entry_cat;
+                    break;
+                default:
+                    seed_posted_cats(false);
+                    break;
+            }
+        
+        ?>
+    </div>
     <footer class="entry-footer">
         <?php seed_entry_footer(); ?>
     </footer>
 </article>
+
+
+<!-- Related -->
+
+<div class="alignfull related-container">
+    <div class="s-container">
+        <h2 class="relate-title">
+            <?php echo $title . __("ที่เกี่ยวข้อง", "wpml_theme"); ?>
+        </h2>
+        <div class="divider"></div>
+        <?php 
+            if ( get_post_type() == "post") {
+                $categories = wp_get_post_categories( get_the_ID() );
+                foreach ($categories as $category) {
+                    $term_IDs[] = $category->term_id;
+                }
+                $args = array(
+                    'post_type' => "post",
+                    'posts_per_page' => 3,
+                    'post_status' => 'publish',
+                    'post__not_in' => array( get_the_ID() ),
+                    'cat' =>  $term_IDs
+                );
+            }else { 
+                if (get_post_type() == 'award') {
+                    $taxo = 'award-type';
+                }
+                $terms = get_the_terms(get_the_ID(), $taxo);
+                foreach ($terms as $term) {
+                    $term_IDs[] = $term->term_id;
+                }
+                $args = array(
+                    'post_type' => get_post_type(),
+                    'posts_per_page' => 3,
+                    'post_status' => 'publish',
+                    'post__not_in' => array( get_the_ID() ),
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => $taxo,
+                            'terms' =>  $term_IDs
+                        )
+                    )
+                );
+            }
+           
+            $the_query = new WP_Query( $args );
+        ?>
+        <?php if ($the_query->found_posts): ?>
+            <div class="s-grid -d3 -m1 _desktop">
+                <?php
+                    while ( $the_query->have_posts() ) {
+                        $the_query->the_post();
+                        get_template_part( 'template-parts/components/card', 'default' );
+                    }
+                    wp_reset_postdata();
+                ?>
+            </div>
+
+            <div class="s-slider -d3 -m1.2 _mobile">
+                <?php
+                    while ( $the_query->have_posts() ) {
+                        $the_query->the_post();
+                        echo '<div class="slider">';
+                        get_template_part( 'template-parts/components/card', 'default' );
+                        echo '</div>';
+                    }
+                    wp_reset_postdata();
+                ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</div>
