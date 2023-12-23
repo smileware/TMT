@@ -249,8 +249,10 @@ function seed_banner_title($post_id) {
 	}
 	$permalink = get_the_permalink($post_id);
 	$breadcrumb='' ; 
-	if ( function_exists('yoast_breadcrumb') ) { 
-		$breadcrumb = yoast_breadcrumb( '<div id="breadcrumbs" class="bc">' ,'</div>',false); 
+	if ( $title_style == 'breadcrumb' ) { 
+		ob_start();
+		rank_math_the_breadcrumbs('<div id="breadcrumbs" class="bc">', '</div>', false);
+		$breadcrumb = ob_get_clean();
 	} 
 	if( is_front_page() ) { 
 		$title = get_bloginfo( 'name' ) . '<small>' . get_bloginfo( 'description' ) . '</small>' ; 
@@ -273,7 +275,9 @@ function seed_banner_title($post_id) {
 				$title = get_the_title($post_id); 
 			}
 		} else {
-			$title = get_the_title($post_id); 
+			if($title_style != 'breadcrumb') { 
+				$title = get_the_title($post_id); 
+			}
 		}
 	} 
 	if (function_exists('is_shop') ) { 

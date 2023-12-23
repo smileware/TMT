@@ -22,7 +22,7 @@ if (!isset($GLOBALS['s_logo_height']))          {$GLOBALS['s_logo_height']      
 if (!isset($GLOBALS['s_thumb_width']))          {$GLOBALS['s_thumb_width']          = '360';}           // any number
 if (!isset($GLOBALS['s_thumb_height']))         {$GLOBALS['s_thumb_height']         = '189';}           // any number
 if (!isset($GLOBALS['s_thumb_crop']))           {$GLOBALS['s_thumb_crop']           = true;}            // true, false
-if (!isset($GLOBALS['s_title_style']))          {$GLOBALS['s_title_style']          = 'banner';}        // minimal, banner
+if (!isset($GLOBALS['s_title_style']))          {$GLOBALS['s_title_style']          = 'breadcrumb';}        // minimal, banner
 
 /* ADD-ON */
 if (!isset($GLOBALS['s_member_url']))           {$GLOBALS['s_member_url']           = 'none';}          // none, url path such as: /my-account/
@@ -509,3 +509,33 @@ function fetch_stock_information() {
     }
 }
 fetch_stock_information();
+
+/**
+ * Filter to change breadcrumb html.
+ *
+ * @param  html  $html Breadcrumb html.
+ * @param  array $crumbs items
+ * @param  class $class Breadcrumb class
+ * @return html  $html.
+ */
+add_filter( 'rank_math/frontend/breadcrumb/items', function( $crumbs, $class ) {
+    if ( ICL_LANGUAGE_CODE == 'en' && isset($crumbs[0][0]) ) { 
+        $crumbs[0][0] = "Home";
+    }
+    return $crumbs;
+}, 10, 3);
+
+/**
+ * Filter to change breadcrumb html.
+ *
+ * @param  html  $html Breadcrumb html.
+ * @param  array $crumbs items
+ * @param  class $class Breadcrumb class
+ * @return html  $html.
+ */
+add_filter( 'rank_math/frontend/breadcrumb/html', function( $html, $crumbs, $class ) {
+    $home_svg = '<svg class="_mobile" xmlns="http://www.w3.org/2000/svg" width="10" height="12" viewBox="0 0 10 12" fill="none" style="margin-top: -4px;">
+    <path d="M4.42749 0.806163C4.74874 0.502438 5.25126 0.502438 5.57251 0.806163L9.60875 4.62228C9.8585 4.8584 10 5.18691 10 5.53059V10.1716C10 10.862 9.44033 11.4216 8.75 11.4216H7.08333C6.39297 11.4216 5.83333 10.862 5.83333 10.1716V8.08829C5.83333 7.8582 5.64678 7.67165 5.41667 7.67165H4.58333C4.35322 7.67165 4.16667 7.8582 4.16667 8.08829V10.1716C4.16667 10.862 3.60702 11.4216 2.91667 11.4216H1.25C0.559642 11.4216 0 10.862 0 10.1716V5.53059C0 5.18691 0.1415 4.8584 0.391233 4.62228L4.42749 0.806163ZM5 1.4117L0.963742 5.22782C0.8805 5.30652 0.833333 5.41603 0.833333 5.53059V10.1716C0.833333 10.4017 1.01988 10.5883 1.25 10.5883H2.91667C3.14678 10.5883 3.33333 10.4017 3.33333 10.1716V8.08829C3.33333 7.39796 3.89297 6.83831 4.58333 6.83831H5.41667C6.10702 6.83831 6.66667 7.39796 6.66667 8.08829V10.1716C6.66667 10.4017 6.85325 10.5883 7.08333 10.5883H8.75C8.98008 10.5883 9.16667 10.4017 9.16667 10.1716V5.53059C9.16667 5.41603 9.1195 5.30652 9.03625 5.22782L5 1.4117Z" fill="#828282"/></svg><span class="_desktop">'. __("หน้าหลัก","wpml_theme") .'</span>';
+    $new_html = str_replace( 'หน้าหลัก', $home_svg, $html );
+	return $new_html;
+}, 10, 3);
