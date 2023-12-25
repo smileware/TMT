@@ -1,5 +1,5 @@
 <?php 
-    $news = get_page_by_title('News &amp; Activities');
+    $news_url = get_permalink_by_title('News &amp; Activities');
     $cats = get_categories( array(
         'hide_empty' => 1,
     ));
@@ -19,7 +19,7 @@
             ?>
         </div>
         <div class="_desktop">
-            <a class="btn-link" href="<?php echo get_permalink($news); ?>">
+            <a class="btn-link" href="<?php echo $news_url; ?>">
                 <?php _e("ดูทั้งหมด", "wpml_theme"); ?>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="8" viewBox="0 0 19 8" fill="none">
                     <path d="M18.4186 4.38574H0.38776C0.17328 4.38574 0 4.21246 0 3.99798C0 3.7835 0.17328 3.61022 0.38776 3.61022H17.4819L15.1287 1.25701C14.9772 1.10554 14.9772 0.859553 15.1287 0.708084C15.2802 0.556615 15.5261 0.556615 15.6776 0.708084L18.6937 3.72413C18.8051 3.83561 18.8379 4.00162 18.7773 4.14703C18.7167 4.29123 18.5749 4.38574 18.4186 4.38574Z" fill="#FA744B"/>
@@ -105,7 +105,7 @@
         ?>
     </div>
     <div class="_mobile footer-link">
-        <a class="btn-link" href="<?php echo get_permalink($news); ?>">
+        <a class="btn-link" href="<?php echo $news_url; ?>">
             <?php _e("ดูทั้งหมด", "wpml_theme"); ?>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="8" viewBox="0 0 19 8" fill="none">
                 <path d="M18.4186 4.38574H0.38776C0.17328 4.38574 0 4.21246 0 3.99798C0 3.7835 0.17328 3.61022 0.38776 3.61022H17.4819L15.1287 1.25701C14.9772 1.10554 14.9772 0.859553 15.1287 0.708084C15.2802 0.556615 15.5261 0.556615 15.6776 0.708084L18.6937 3.72413C18.8051 3.83561 18.8379 4.00162 18.7773 4.14703C18.7167 4.29123 18.5749 4.38574 18.4186 4.38574Z" fill="#FA744B"/>

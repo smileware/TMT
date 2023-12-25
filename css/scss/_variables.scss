@@ -24,8 +24,8 @@
   --s-header-height: 60px;
   --s-toggle-height: 42px;
   --s-footer-height: 60px;
-  --s-title-size: 1.5rem;
-  --s-title-height: 120px;
+  --s-title-size: 40px;
+  --s-title-height: 180px;
   --s-title-bg-blur: 20px;
   --s-title-bg-opacity: 0.7;
   --nav-font-size: 20px;
@@ -88,7 +88,7 @@
     --s-box-padding: 25px;
   }
   .main-header {
-    --s-title-height: 280px;
-    --s-title-size: 55px;
+    --s-title-height: 200px;
+    --s-title-size: 60px;
   }
 }

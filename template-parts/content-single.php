@@ -59,7 +59,7 @@
             if ( get_post_type() == "post") {
                 $categories = wp_get_post_categories( get_the_ID() );
                 foreach ($categories as $category) {
-                    $term_IDs[] = $category->term_id;
+                    $term_IDs[] = $category;
                 }
                 $args = array(
                     'post_type' => "post",

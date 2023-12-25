@@ -224,6 +224,9 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {require get_template_directory() . '/inc/jetpack.php';}
 
 
+// [FACET]:: Remove count on label
+add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
+
 
 if( function_exists('acf_add_options_page') ) {
 	
@@ -450,65 +453,89 @@ function acf_history() {
     );
 }
 
-function fetch_stock_information() {
-
-    $transient_key = 'stock_information_cache';
-    $cached_data = get_transient($transient_key);
-
-    try { 
-        $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';
-        $section = file_get_contents($url);
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($section);
-        $finder = new DomXPath($dom);
-
-        $classname = "quote-market-lastInfo";
-        $spaner = $finder->query("//*[contains(@class, '$classname')]");
-        $date = $spaner->item(1)->nodeValue;
-        $date = str_replace('Last Update :', '', $date);
-        $timestamp = strtotime($date);
-        $localized_date = date_i18n('d M Y H:i:s', $timestamp);
-        // ราคาเปิด
-        $classopen = "item-list-details d-flex flex-column price-info-stock-detail col-5";
-        $open = $finder->query("//*[contains(@class, '$classopen')]");
-        $openvalue = $open->item(5)->nodeValue;
-        $openvalue = str_replace('Open', '', $openvalue);
-        // ราคาปิด
-        $classclosing = "value text-white mb-0 me-2 lh-1";
-        $closing = $finder->query("//*[contains(@class, '$classclosing')]");
-        $closingvalue = $closing->item(0)->nodeValue;
-        // ราคาก่อนหน้า
-        $classprior = "item-list-details d-flex flex-column price-info-stock-detail col-5";
-        $prior = $finder->query("//*[contains(@class, '$classprior')]");
-        $priorvalue = $prior->item(4)->nodeValue;
-        $priorvalue = str_replace('Prior', '', $priorvalue);
-        // เปลี่ยนแปลง
-        $classpercent = "d-flex mb-0 pb-2";
-        $percent = $finder->query("//*[contains(@class, '$classpercent')]");
-        $percentvalue = $percent->item(0)->nodeValue;
-
-        $value = array(
-            'stock_date' => trim($localized_date) , 
-            'stock_date_en' => trim($date), 
-            'stock_price' => trim($closingvalue),
-            'stock_change' => trim($percentvalue),
-            'stock_open' =>  $openvalue,
-            'stock_prior' =>  $priorvalue
-        );
-
-        set_transient($transient_key, $value, HOUR_IN_SECONDS);
-        foreach ($value as $field_key => $field_value) {
-            if (!empty(trim($field_value))) {
-                update_field($field_key, $field_value, 'option');
-            }
-        }   
-
-    }catch (Exception $e) {
-        echo $e;
-    }
+/* === Sustainability Documents === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_sustainability_documents' );
 }
-fetch_stock_information();
+function acf_sustainability_documents() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Sustainability Document',
+            'title' => 'Sustainability Document',
+            'description' => __('Display Sustainability Document'),
+            'render_template' => 'template-parts/blocks/sustainability-documents.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-document',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
+if(is_front_page()) { 
+    function fetch_stock_information() {
+        $transient_key = 'stock_information_cache';
+        $cached_data = get_transient($transient_key);
+        try { 
+            $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';
+            $section = file_get_contents($url);
+            $dom = new DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML($section);
+            $finder = new DomXPath($dom);
+    
+            $classname = "quote-market-lastInfo";
+            $spaner = $finder->query("//*[contains(@class, '$classname')]");
+            $date = $spaner->item(1)->nodeValue;
+            $date = str_replace('Last Update :', '', $date);
+            $timestamp = strtotime($date);
+            $localized_date = date_i18n('d M Y H:i:s', $timestamp);
+            // ราคาเปิด
+            $classopen = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+            $open = $finder->query("//*[contains(@class, '$classopen')]");
+            $openvalue = $open->item(5)->nodeValue;
+            $openvalue = str_replace('Open', '', $openvalue);
+            // ราคาปิด
+            $classclosing = "value text-white mb-0 me-2 lh-1";
+            $closing = $finder->query("//*[contains(@class, '$classclosing')]");
+            $closingvalue = $closing->item(0)->nodeValue;
+            // ราคาก่อนหน้า
+            $classprior = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+            $prior = $finder->query("//*[contains(@class, '$classprior')]");
+            $priorvalue = $prior->item(4)->nodeValue;
+            $priorvalue = str_replace('Prior', '', $priorvalue);
+            // เปลี่ยนแปลง
+            $classpercent = "d-flex mb-0 pb-2";
+            $percent = $finder->query("//*[contains(@class, '$classpercent')]");
+            $percentvalue = $percent->item(0)->nodeValue;
+    
+            $value = array(
+                'stock_date' => trim($localized_date) , 
+                'stock_date_en' => trim($date), 
+                'stock_price' => trim($closingvalue),
+                'stock_change' => trim($percentvalue),
+                'stock_open' =>  $openvalue,
+                'stock_prior' =>  $priorvalue
+            );
+    
+            set_transient($transient_key, $value, HOUR_IN_SECONDS);
+            foreach ($value as $field_key => $field_value) {
+                if (!empty(trim($field_value))) {
+                    update_field($field_key, $field_value, 'option');
+                }
+            }   
+    
+        }catch (Exception $e) {
+            echo $e;
+        }
+    }
+    fetch_stock_information();
+}
+
+
 
 /**
  * Filter to change breadcrumb html.
@@ -539,3 +566,64 @@ add_filter( 'rank_math/frontend/breadcrumb/html', function( $html, $crumbs, $cla
     $new_html = str_replace( 'หน้าหลัก', $home_svg, $html );
 	return $new_html;
 }, 10, 3);
+
+// FACETWP set default dropdown. [PHP Version by no longer use it]
+add_filter( 'facetwp_preload_url_vars', function( $url_vars ) {
+    /*
+        TODO:: Change slug Depending on Language. 
+    */
+    if ( 'sustainability-management' == FWP()->helper->get_uri() ) {
+        if ( empty( $url_vars['year'] ) ) {
+            $first_year_option = get_first_facet_option('year');
+            if ($first_year_option) {
+                $url_vars['year'] = [ $first_year_option ];
+            }
+        }
+    }
+	if ( 'en/sustainability-management' == FWP()->helper->get_uri() ) {
+        if ( empty( $url_vars['year'] ) ) {
+            $first_year_option = get_first_facet_option('year');
+            if ($first_year_option) {
+                $url_vars['year'] = [ $first_year_option ];
+            }
+        }
+    }
+	
+    return $url_vars;
+} );
+
+function get_first_facet_option($facet_name) {
+    $facets = FWP()->helper->get_facets();
+    foreach ($facets as $facet) {
+        if ($facet['name'] === $facet_name) {
+               $taxonomy_name = str_replace('tax/', '', $facet['source']);
+               if (taxonomy_exists($taxonomy_name)) {
+                   $terms = get_terms(['taxonomy' => $taxonomy_name, 'number' => 1]);
+                   if (!is_wp_error($terms) && !empty($terms)) {
+                       return $terms[0]->slug;
+                   }
+               }
+               break;
+        }
+    }
+    return null; 
+}
+
+function get_permalink_by_title($title) {
+    $args = array(
+        'post_type' => 'page',
+        'title' => $title,
+        'posts_per_page' => 1
+    );
+
+    $query = new WP_Query($args);
+    $permalink = '';
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        $permalink = get_permalink();
+    }
+
+    wp_reset_postdata();
+    return $permalink;
+}

@@ -99,7 +99,7 @@
             "name": "banner_opacity",
             "aria-label": "",
             "type": "range",
-            "instructions": "Default is 0.7",
+            "instructions": "Default is 0.1",
             "required": 0,
             "conditional_logic": [
                 [
@@ -115,8 +115,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "0.7",
-            "min": "0.5",
+            "default_value": "0.1",
+            "min": ".1",
             "max": 1,
             "step": "0.05",
             "prepend": "",
@@ -204,5 +204,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703337681
+    "modified": 1703398021
 }

@@ -266,6 +266,11 @@ function seed_banner_title($post_id) {
 		if ($title_style == 'banner' && function_exists('get_field')) {
 			$headline_title    = get_field('headline_title', $post_id);
 			$headline_subtitle = get_field('headline_subtitle', $post_id);
+
+			ob_start();
+			rank_math_the_breadcrumbs('<div id="breadcrumbs" class="bc">', '</div>', false);
+			$breadcrumb = ob_get_clean();
+
 			if ( $headline_title ) {
 				$title = $headline_title; 
 				if ( $headline_subtitle ) {
@@ -277,6 +282,8 @@ function seed_banner_title($post_id) {
 		} else {
 			if($title_style != 'breadcrumb') { 
 				$title = get_the_title($post_id); 
+			}else { 
+				$title = '';
 			}
 		}
 	} 
@@ -286,8 +293,8 @@ function seed_banner_title($post_id) {
 		} 
 	}
 	$output = '<div class="main-header -' . $title_style .  '">' . $banner_bg . 
-			  '<div class="s-container"><div class="main-title _heading"><div class="title"><a href="' . $permalink . '">' . $title .
-			  '</a> </div>' . $breadcrumb . '</div></div></div>' ; 
+			  '<div class="s-container">' . $breadcrumb . '<div class="main-title _heading"><div class="title"><a href="' . $permalink . '">' . $title .
+			  '</a> </div></div></div></div>' ; 
     echo $output; 
 } 
 

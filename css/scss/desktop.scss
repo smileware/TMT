@@ -96,7 +96,7 @@ body.headbar-d {
       > .sub-menu {
         opacity: 1;
         max-height: 100vh;
-        top: 100%;
+        top: calc(100% + 1px);
         height: auto;
         z-index: 91;
         overflow: visible;
@@ -194,6 +194,17 @@ body.headbar-d {
 }
 
 /* == BODY == */
+// Card document download
+.content-document { 
+  padding: 25px 35px;
+  .entry-date { 
+    min-width: 150px;
+  }
+  .file-btns { 
+    width: 300px;
+  }
+}
+
 
 /* CONTENT ITEM */
 .content-item {
@@ -467,10 +478,10 @@ body.headbar-d {
       margin-bottom: 0;
     }
   }
-  .file-btns  {
-    .button { 
-      margin: 0 10px;
-    }
+}
+.file-btns  {
+  .button { 
+    margin: 0 10px;
   }
 }
 
@@ -591,6 +602,32 @@ body.headbar-d {
           height: inherit;
         }
       }
+    }
+  }
+}
+
+
+/*
+  #####   ####   ####  #    # #    # ###### #    # ##### 
+  #    # #    # #    # #    # ##  ## #      ##   #   #   
+  #    # #    # #      #    # # ## # #####  # #  #   #   
+  #    # #    # #      #    # #    # #      #  # #   #   
+  #    # #    # #    # #    # #    # #      #   ##   #   
+  #####   ####   ####   ####  #    # ###### #    #   #   
+*/
+.document-header { 
+  justify-content: space-between;
+  flex-direction: row;
+  .filter-container { 
+    margin-top: 0;
+  }
+}
+
+.document-container { 
+  .document-table-header { 
+    .dth-date { 
+      min-width: 185px;
+      padding-left: 35px;
     }
   }
 }
