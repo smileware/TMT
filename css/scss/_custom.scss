@@ -746,9 +746,9 @@ p {
 */ 
 
 .filter-container {
-    .facetwp-dropdown option:first-child { 
-        display: none;
-    }
+    // .facetwp-dropdown option:first-child { 
+    //     display: none;
+    // }
     display: flex;
     align-items: center;
     label { 

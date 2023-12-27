@@ -484,6 +484,18 @@ body.headbar-d {
     margin: 0 10px;
   }
 }
+.sg-file-download { 
+  flex-direction: row;
+  padding: 42px;
+  .file-name { 
+    text-align: left;
+    h4 { 
+      margin-bottom: 0;
+      font-size: 30px;
+      color: #333;
+    }
+  }
+}
 
 /*
   #####   ##   #####  
@@ -624,6 +636,12 @@ body.headbar-d {
 }
 
 .document-container { 
+  border: none;
+  padding: 0;
+  .s-grid {
+    border: 1px solid #F2F2F2;
+    padding: 30px 50px 80px;
+  }
   .document-table-header { 
     .dth-date { 
       min-width: 185px;

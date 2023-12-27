@@ -475,6 +475,50 @@ function acf_sustainability_documents() {
 }
 
 
+/* === Sustainability Documents === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_sustainability_documents_with_cover' );
+}
+function acf_sustainability_documents_with_cover() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Sustainability Document with Cover',
+            'title' => 'Sustainability Document with Cover',
+            'description' => __('Display Sustainability Document with Cover'),
+            'render_template' => 'template-parts/blocks/sustainability-documents-cover.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-document',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
+/* === Single Download File === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_single_download_file' );
+}
+function acf_single_download_file() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Single Download File',
+            'title' => 'Single Download File',
+            'description' => __('Display Single Download File'),
+            'render_template' => 'template-parts/blocks/single-download.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-document',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
 if(is_front_page()) { 
     function fetch_stock_information() {
         $transient_key = 'stock_information_cache';
@@ -567,47 +611,47 @@ add_filter( 'rank_math/frontend/breadcrumb/html', function( $html, $crumbs, $cla
 	return $new_html;
 }, 10, 3);
 
-// FACETWP set default dropdown. [PHP Version by no longer use it]
-add_filter( 'facetwp_preload_url_vars', function( $url_vars ) {
-    /*
-        TODO:: Change slug Depending on Language. 
-    */
-    if ( 'sustainability-management' == FWP()->helper->get_uri() ) {
-        if ( empty( $url_vars['year'] ) ) {
-            $first_year_option = get_first_facet_option('year');
-            if ($first_year_option) {
-                $url_vars['year'] = [ $first_year_option ];
-            }
-        }
-    }
-	if ( 'en/sustainability-management' == FWP()->helper->get_uri() ) {
-        if ( empty( $url_vars['year'] ) ) {
-            $first_year_option = get_first_facet_option('year');
-            if ($first_year_option) {
-                $url_vars['year'] = [ $first_year_option ];
-            }
-        }
-    }
+// // FACETWP set default dropdown. [PHP Version by no longer use it]
+// add_filter( 'facetwp_preload_url_vars', function( $url_vars ) {
+//     /*
+//         TODO:: Change slug Depending on Language. 
+//     */
+//     if ( 'sustainability-management' == FWP()->helper->get_uri() ) {
+//         if ( empty( $url_vars['year'] ) ) {
+//             $first_year_option = get_first_facet_option('year');
+//             if ($first_year_option) {
+//                 $url_vars['year'] = [ $first_year_option ];
+//             }
+//         }
+//     }
+// 	if ( 'en/sustainability-management' == FWP()->helper->get_uri() ) {
+//         if ( empty( $url_vars['year'] ) ) {
+//             $first_year_option = get_first_facet_option('year');
+//             if ($first_year_option) {
+//                 $url_vars['year'] = [ $first_year_option ];
+//             }
+//         }
+//     }
 	
-    return $url_vars;
-} );
+//     return $url_vars;
+// } );
 
-function get_first_facet_option($facet_name) {
-    $facets = FWP()->helper->get_facets();
-    foreach ($facets as $facet) {
-        if ($facet['name'] === $facet_name) {
-               $taxonomy_name = str_replace('tax/', '', $facet['source']);
-               if (taxonomy_exists($taxonomy_name)) {
-                   $terms = get_terms(['taxonomy' => $taxonomy_name, 'number' => 1]);
-                   if (!is_wp_error($terms) && !empty($terms)) {
-                       return $terms[0]->slug;
-                   }
-               }
-               break;
-        }
-    }
-    return null; 
-}
+// function get_first_facet_option($facet_name) {
+//     $facets = FWP()->helper->get_facets();
+//     foreach ($facets as $facet) {
+//         if ($facet['name'] === $facet_name) {
+//                $taxonomy_name = str_replace('tax/', '', $facet['source']);
+//                if (taxonomy_exists($taxonomy_name)) {
+//                    $terms = get_terms(['taxonomy' => $taxonomy_name, 'number' => 1, 'hide_empty' => true]);
+//                    if (!is_wp_error($terms) && !empty($terms)) {
+//                        return $terms[0]->slug;
+//                    }
+//                }
+//                break;
+//         }
+//     }
+//     return null; 
+// }
 
 function get_permalink_by_title($title) {
     $args = array(

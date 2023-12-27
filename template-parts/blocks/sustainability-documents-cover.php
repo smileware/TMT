@@ -1,5 +1,5 @@
 <?php 
-    $term_id = get_field("sustainability_document_term");
+    $term_id = get_field("sustainability_document_cover_term");
 ?>
 <div class="document-header">
     <h3><?php echo $term_id->name; ?></h3>
@@ -9,18 +9,8 @@
     </div>
 </div>
 
-<div class="document-container">
-
-    <div class="s-grid -d1 -m1 facetwp-template">
-        <div class="document-table-header">
-            <div class="dth dth-date">
-                <label><?php _e("วันที่", "wpml_theme"); ?></label>
-            </div>
-            <div class="dth dth-title">
-                <label><?php _e("หัวข้อ", "wpml_theme"); ?></label>
-            </div>
-            <div class="dth dth-action"></div>
-        </div>
+<div class="document-container-cover">
+    <div class="s-grid -d3 -m1 facetwp-template">
         <?php 
             $args = array(
                 'post_type' => 'sustainability',
@@ -37,7 +27,7 @@
             $the_query = new WP_Query( $args );
             while ( $the_query->have_posts() ) {
                 $the_query->the_post();
-                get_template_part( 'template-parts/components/card', 'document' );
+                get_template_part( 'template-parts/components/card', 'document-cover' );
             }
             wp_reset_postdata();
         ?>
