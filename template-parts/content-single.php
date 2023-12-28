@@ -18,8 +18,7 @@
 
     <div class="entry-meta">
         <?php 
-            seed_posted_on(false); 
-            echo '<span> | </span>';
+            
             switch(get_post_type()) { 
                 case "post":
                     seed_posted_cats(false);
@@ -34,11 +33,22 @@
                     }   
                     echo $entry_cat;
                     break;
+                case "sustainability":
+                    $terms = get_the_terms(get_the_ID(), 'sustainability-type');
+                    $entry_cat = "";
+                    if( $terms ) { 
+                        foreach( $terms as $term ) {
+                            $entry_cat .= '<span class=" _heading">' . $term->name . '</span>';
+                        }
+                    }   
+                    echo $entry_cat;
+                    break;
                 default:
                     seed_posted_cats(false);
                     break;
             }
-        
+            echo '<span> | </span>';
+            seed_posted_on(false); 
         ?>
     </div>
     <footer class="entry-footer">
@@ -72,6 +82,10 @@
                 if (get_post_type() == 'award') {
                     $taxo = 'award-type';
                 }
+                elseif (get_post_type() == 'sustainability') {
+                    $taxo = 'sustainability-type';
+                }
+                
                 $terms = get_the_terms(get_the_ID(), $taxo);
                 foreach ($terms as $term) {
                     $term_IDs[] = $term->term_id;

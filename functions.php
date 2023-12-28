@@ -496,6 +496,27 @@ function acf_sustainability_documents_with_cover() {
     );
 }
 
+/* === Sustainability Projects and Activities === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_sustainability_news' );
+}
+function acf_sustainability_news() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Sustainability News',
+            'title' => 'Sustainability News',
+            'description' => __('Display Sustainability News'),
+            'render_template' => 'template-parts/blocks/sustainability-news.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'admin-post',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 
 /* === Single Download File === */
 if (function_exists('acf_register_block_type')) {
@@ -671,3 +692,10 @@ function get_permalink_by_title($title) {
     wp_reset_postdata();
     return $permalink;
 }
+
+// Change the Excerpt Length
+function mytheme_custom_excerpt_length( $length ) {
+    return 2000;
+}
+add_filter( 'excerpt_length', 'mytheme_custom_excerpt_length', 999 );
+    

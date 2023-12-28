@@ -29,6 +29,16 @@
                             }   
                             echo $entry_cat;
                             break;
+                        case "sustainability":
+                            $terms = get_the_terms(get_the_ID(), 'sustainability-type');
+                            $entry_cat = "";
+                            if( $terms ) { 
+                                foreach( $terms as $term ) {
+                                    $entry_cat .= '<span class=" _heading">' . $term->name . '</span>';
+                                }
+                            }   
+                            echo $entry_cat;
+                            break;
                         default:
                             seed_posted_cats(false);
                             break;
