@@ -21,7 +21,8 @@
                 "banner": "Banner",
                 "minimal": "Minimal",
                 "hidden": "Hidden",
-                "breadcrumb": "Breadcrumb"
+                "breadcrumb": "Breadcrumb",
+                "breadcrumb-xl": "Breadcrumb XL"
             },
             "default_value": "default",
             "return_format": "value",
@@ -46,6 +47,13 @@
                         "operator": "==",
                         "value": "banner"
                     }
+                ],
+                [
+                    {
+                        "field": "field_5d1a0217cf408",
+                        "operator": "==",
+                        "value": "breadcrumb-xl"
+                    }
                 ]
             ],
             "wrapper": {
@@ -54,7 +62,6 @@
                 "id": ""
             },
             "return_format": "url",
-            "preview_size": "thumbnail",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -62,7 +69,8 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_5d1a0527f6a99",
@@ -204,5 +212,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703602302
+    "modified": 1703781425
 }

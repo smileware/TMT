@@ -1,0 +1,133 @@
+{
+    "key": "group_658d341ed005d",
+    "title": "Block Post News",
+    "fields": [
+        {
+            "key": "field_658d341f01bfb",
+            "label": "Post News Navigation",
+            "name": "post_news_navigation",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_658d341f0a09f",
+                    "label": "Page Name",
+                    "name": "page_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_658d341f01bfb"
+                },
+                {
+                    "key": "field_658d341f0a0b8",
+                    "label": "Page Link",
+                    "name": "page_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "parent_repeater": "field_658d341f01bfb"
+                },
+                {
+                    "key": "field_658d341f0a0c2",
+                    "label": "Is Active",
+                    "name": "is_active",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1,
+                    "parent_repeater": "field_658d341f01bfb"
+                }
+            ]
+        },
+        {
+            "key": "field_658d341f01c0a",
+            "label": "Post News",
+            "name": "post_news",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "category",
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "field_type": "checkbox",
+            "bidirectional": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/post-news"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1703754786
+}

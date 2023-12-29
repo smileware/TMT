@@ -193,6 +193,13 @@ body.headbar-d {
   display: none;
 }
 
+/* == HEADER == */
+.main-header {
+  &.-breadcrumb-xl { 
+    height: 670px;
+  }
+}
+
 /* == BODY == */
 // Card document download
 .content-document { 
@@ -670,9 +677,9 @@ body.headbar-d {
     }
     .content-item.-card { 
       .pic {
-        height: inherit;
+        height: 270px;
         img { 
-          height: inherit;
+          height: 270px;
         }
       }
     }
@@ -680,4 +687,19 @@ body.headbar-d {
 }
 .news-wrap { 
   text-align: left;
+}
+
+.internship-silder { 
+  .nav { 
+    .prev, .next { 
+      top: calc(-90px);
+      height: 45px;
+      width: 45px;
+      right: 0;
+    }
+    .prev { 
+      right: 55px;
+      left: unset;
+    }
+  }
 }

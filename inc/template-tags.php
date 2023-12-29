@@ -247,9 +247,26 @@ function seed_banner_title($post_id) {
 			$banner_bg .= '<div class="bg -blank"></div>'; 
 		}
 	}
+	if ($title_style == 'breadcrumb-xl' ) {
+		$banner_url = seed_get_thumbnail($post_id);
+		$img_banner = get_field( 'banner', $post_id );
+		$img_banner_blur = 0;
+		$img_banner_opacity = 1;
+		if ($img_banner) {
+			$banner_url = $img_banner;
+		}
+		$style ='';
+		if($banner_url) {
+			$style = 'background-image: url(' . $banner_url . ');';
+			$style .= ' filter: blur(' . $img_banner_blur . 'px);';
+			$style .= ' opacity: ' . $img_banner_opacity . ';';
+			$style = 'style="' . $style . '"';
+			$banner_bg .= '<div class="bg" ' . $style . '></div>'; 
+		} 
+	}
 	$permalink = get_the_permalink($post_id);
 	$breadcrumb='' ; 
-	if ( $title_style == 'breadcrumb' ) { 
+	if ( $title_style == 'breadcrumb' || $title_style == 'breadcrumb-xl') { 
 		ob_start();
 		rank_math_the_breadcrumbs('<div id="breadcrumbs" class="bc">', '</div>', false);
 		$breadcrumb = ob_get_clean();
