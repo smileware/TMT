@@ -27,7 +27,11 @@ get_header(); ?>
         <div id="primary" class="content-area">
             <main id="main" class="site-main ">
                 <?php 
-					get_template_part( 'template-parts/content-single', get_post_type() ); 
+					if(get_post_type() == 'job') { 
+						get_template_part( 'template-parts/content-job', get_post_type() ); 
+					}else {
+						get_template_part( 'template-parts/content-single', get_post_type() ); 
+					}
 				?>
                 <?php wp_reset_postdata(); ?>
             </main>
