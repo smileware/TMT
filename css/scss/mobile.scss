@@ -657,6 +657,45 @@
       }
     }
   }
+  &.-job { 
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid #F2F2F2;
+    background-color: #FFF;
+    transition: var(--c-transition-hover);
+    .entry-title { 
+      min-height: 70px;
+      color: var(--s-navy);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.1;
+      transition: var(--c-transition-hover);
+    }
+    .entry-info {
+      margin-top: 10px;
+      padding-top: 15px;
+      border-top: 1px solid #f2f2f2;
+      color: #4F4F4F;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: normal;
+      transition: var(--c-transition-hover);
+      svg { 
+        color: var(--s-accent-hover);
+        margin-right: 10px;
+      }
+    }
+    &:hover { 
+      background-color: var(--s-accent);
+      .entry-title {  
+        color: white;
+      }
+      .entry-info {
+        color: white;
+        border-top: 1px solid #305E74;
+      }
+    }
+  }
 }
 // Card document download
 .content-document { 
@@ -1737,5 +1776,65 @@ body.category .content-item .cat-links {
       font-weight: 700;
       line-height: normal;
     }
+  }
+}
+
+/*
+       #  ####  #####  
+       # #    # #    # 
+       # #    # #####  
+       # #    # #    # 
+  #    # #    # #    # 
+   ####   ####  #####  
+*/
+.jobs-anchors { 
+  background-color: var(--s-navy);
+  padding: 50px 0;
+  margin-top: calc(-1 * var(--s-space));
+  .jobs-anchors-wrapper { 
+    margin-top: 0px;
+    grid-gap: 20px;
+    .anchor-item { 
+      padding: 15px 30px; 
+      background-color: #fff;
+      border-radius: 5px;
+      text-align: center;
+      color: var(--s-accent);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: normal;
+      transition: var(--c-transition-hover);
+      &:hover { 
+        background-color: var(--s-accent-hover);
+        color: white;
+      }
+    }
+  }
+}
+.anchor-section { 
+  padding: 50px 0;
+  &:nth-child(even) { 
+    background-color: #fafafa;
+  }
+  .anchor-section-header { 
+    svg {
+      width: 40px; 
+      margin-right: 20px;
+    }
+    h3 { 
+      color: var(--s-accent);
+      font-size: 40px;
+      font-weight: 700;
+    }
+    p { 
+      margin-top: 20px;
+      font-size: 22px;
+      color: #4F4F4F;
+      line-height: 1.3;
+    }
+  }
+  .s-grid { 
+    margin-top: 40px;
+    grid-gap: 25px;
   }
 }
