@@ -603,6 +603,30 @@ function acf_slider_internship_opportunity() {
     );
 }
 
+
+
+/* === Slider Internship Opportunity === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_contact_card' );
+}
+function acf_contact_card() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Contact Card',
+            'title' => 'Contact Card',
+            'description' => __('Display Contact Card'),
+            'render_template' => 'template-parts/blocks/contact-card.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'format-quote',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
 if(is_front_page()) { 
     function fetch_stock_information() {
         $transient_key = 'stock_information_cache';

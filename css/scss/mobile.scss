@@ -2001,3 +2001,104 @@ body.category .content-item .cat-links {
     }
   }
 }
+
+
+/*
+   ####   ####  #    # #####   ##    ####  ##### 
+  #    # #    # ##   #   #    #  #  #    #   #   
+  #      #    # # #  #   #   #    # #        #   
+  #      #    # #  # #   #   ###### #        #   
+  #    # #    # #   ##   #   #    # #    #   #   
+   ####   ####  #    #   #   #    #  ####    #   
+*/
+.contact-card {
+  border :1px solid #F2F2F2;
+  background-color: white;
+  border-radius: 5px; 
+  transition: var(--c-transition-hover);
+  min-height: 350px;
+  display: flex;
+  .pic { 
+    img { 
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .info { 
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h3 { 
+      color: var(--s-accent);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.1; 
+    }
+    .divider { 
+      width: 40px;
+      height: 3px;
+      background-color: var(--s-accent-hover);
+      margin-bottom: 25px;
+    }
+    .address { 
+      color: #4F4F4F;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: var(--s-space);
+    }
+    .icon-list { 
+      color: #4F4F4F;
+      font-size: 20px;
+      font-weight: 400;
+      svg { 
+        color: var(--s-accent-hover);
+        margin-right: 15px;
+      }
+    }
+  }
+  .link { 
+    margin-top: 25px;
+    color: #4f4f4f;
+    font-size: 18px;
+    svg { 
+      margin-left: 10px;
+      color: var(--s-accent-hover);
+    }
+  }
+  &:hover { 
+    background-color: var(--s-accent);
+    .info { 
+      h3, .address, .icon-list, .link { 
+        color: white;
+      }
+    }
+  }
+  &.-large { 
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+    border: 0;
+    .pic { 
+      width: 100%;
+      margin-top: 30px;
+    }
+    .info { 
+      display: block;
+      width: 100%;
+      padding: 0px;
+    }
+    &:hover { 
+      background-color: #fff;
+      .info { 
+        h3, .address, .icon-list, .link { 
+          color: unset;
+        }
+      }
+    }
+  }
+}

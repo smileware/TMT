@@ -805,3 +805,39 @@ body.headbar-d {
     }
   }
 }
+
+
+
+/*
+   ####   ####  #    # #####   ##    ####  ##### 
+  #    # #    # ##   #   #    #  #  #    #   #   
+  #      #    # # #  #   #   #    # #        #   
+  #      #    # #  # #   #   ###### #        #   
+  #    # #    # #   ##   #   #    # #    #   #   
+   ####   ####  #    #   #   #    #  ####    #   
+*/
+.contact-card {
+  min-height: 420px;
+  .info { 
+    padding: 45px;
+  }
+  &.-large { 
+    flex-direction: row;
+    .pic { 
+      width: 60%;
+      margin-top: 0px;
+    }
+    .info { 
+      width: 40%;
+      padding: 50px 40px;
+    }
+    &:hover { 
+      background-color: var(--s-accent);
+      .info { 
+        h3, .address, .icon-list, .link { 
+          color: white;
+        }
+      }
+    }
+  }
+}
