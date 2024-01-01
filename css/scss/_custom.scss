@@ -478,20 +478,27 @@ p {
         .ff-el-form-control { 
             font-family: inherit;
         }
+        .ff-el-group { 
+            margin-bottom: 30px;
+        }
         .ff-el-input--label label{ 
-            color: var(--s-accent);
-            font-size: 25px;
+            color: #333;
+            font-size: 18px;
             font-weight: 600;
         }
         .ff-el-input--content { 
             input, textarea, select {
                 border: 0;
                 background: #FFFFFF;
-                border: 1px solid #bdbdbd;
-                border-radius: 10px;
-                padding: 20px 35px;
-                font-size: 20px;
-                color: var(--s-texts);
+                border: 1px solid #F2F2F2;
+                border-radius: 0px;
+                padding: 8px 22px;
+                font-size: 18px;
+                color: #4F4F4F;
+                font-weight: 400;
+                &::placeholder { 
+                    color: #E0E0E0;
+                }
             }
             select.ff-el-form-control:not([size]):not([multiple]) { 
                 height: auto;
@@ -532,21 +539,23 @@ p {
         .ff_submit_btn_wrapper {
             width: 100%;
             .ff-btn-submit{
-                height: 50px;
+                height: 45px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 color: white;
-                font-weight: 600;
-                font-size: 25px;
-                background-color: var(--s-accent);
-                min-width: 233px;
+                font-weight: 500;
+                font-size: 20px;
+                background-color: var(--s-accent) !important;
+                min-width: 210px;
                 border: none;
                 border-radius: 50px;
                 margin: 0 auto;
                 transition: .4s ease all;
-                &:hover { 
-                    background-color: #404040;
+                margin-top: 20px;
+
+                &:hover {
+                    background-color: var(--s-accent-hover) !important;
                     color: white;
                     border: none;
                     opacity: 1;
@@ -593,7 +602,7 @@ p {
             }
             .ff_submit_btn_wrapper {
                 .ff-btn-submit{
-                    min-width: 100%;
+                    // min-width: 100%;
                 }
             }
             .custom-file-upload { 
@@ -774,3 +783,4 @@ p {
         -moz-appearance: none;
     }
 }
+
