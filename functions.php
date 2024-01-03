@@ -626,6 +626,27 @@ function acf_contact_card() {
     );
 }
 
+/* === Flie Link === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_file_link' );
+}
+function acf_file_link() { 
+    acf_register_block_type(
+        array(
+            'name' => 'File Link',
+            'title' => 'File Link',
+            'description' => __('Display File Link'),
+            'render_template' => 'template-parts/blocks/file-link.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'format-quote',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 
 if(is_front_page()) { 
     function fetch_stock_information() {
