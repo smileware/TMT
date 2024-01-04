@@ -1,11 +1,10 @@
 <?php 
 /**
- * Template Name: Solution
+ * Template Name: Product
  */
 get_header(); ?>
 <?php 
-    $file = get_field("solution_banner");
-    $tabs = get_field("solution_nav_tabs");
+    $file = get_field("product_banner");
     $args = array(
         'post_type'      => 'page',
         'posts_per_page' => -1,
@@ -16,7 +15,7 @@ get_header(); ?>
     $child_pages = new WP_Query($args);
 ?>
 
-<div class="template-solution-banner">
+<div class="template-product-banner">
     <div class="banner-overlay"></div>
     <div class="banner-image">
         <?php if($file['type'] == 'video'): ?>
@@ -40,26 +39,10 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <main id="main" class="site-main -hide-title">
             <!-- Desktop -->
-            <div class="_desktop main-solution-desktop">
+            <div class="_desktop main-product-desktop">
                 <div class="child-title-container left">
-                    <div class="tabs-link">
-                        <?php 
-                            if($tabs){ 
-                                foreach ($tabs as $tab) {
-                                    $link_url = $tab['tab_link']['url'];
-                                    $link_title = $tab['tab_link']['title'];
-                                    $active = $tab['is_active'] ? 'active' : '';
-                                    echo '<a class="tab-link-item '. $active .'" href="'. $link_url .'">';
-                                    echo $link_title;
-                                    echo '</a>';
-                                }
-                            }
-                        ?>
-                    </div>
-                    <div class="page-template-title">
-                        <h2>
-                            <?php the_title(); ?>
-                        </h2>
+                    <div class="page-template-label">
+                        <?php _e("Products Categories", "wpml_theme"); ?>
                     </div>
                     <?php 
                         if ($child_pages->have_posts()) : 
@@ -83,21 +66,10 @@ get_header(); ?>
             </div>
             <!-- Mobile -->
 
-            <div class="tabs-link _mobile">
-                <?php 
-                    if($tabs){ 
-                        foreach ($tabs as $tab) {
-                            $link_url = $tab['tab_link']['url'];
-                            $link_title = $tab['tab_link']['title'];
-                            $active = $tab['is_active'] ? 'active' : '';
-                            echo '<a class="tab-link-item '. $active .'" href="'. $link_url .'">';
-                            echo $link_title;
-                            echo '</a>';
-                        }
-                    }
-                ?>
-            </div>
-            <div class="_mobile main-solution-mobile alignfull">
+            <div class="_mobile main-product-mobile alignfull">
+                <div class="page-template-label">
+                    <?php _e("Products Categories", "wpml_theme"); ?>
+                </div>
                 <div class="accordion-container">
                     <?php 
                         if ($child_pages->have_posts()) : 
@@ -119,13 +91,14 @@ get_header(); ?>
     </div>
 </div>
 
+<!-- TODO: Add related product with animation -->
 <footer class="entry-footer">
     <?php seed_entry_footer(); ?>
 </footer>
 
 <script>
-    const titles = document.querySelectorAll('.main-solution-desktop .child-title');
-    const containers = document.querySelectorAll('.main-solution-desktop .child-content');
+    const titles = document.querySelectorAll('.main-product-desktop .child-title');
+    const containers = document.querySelectorAll('.main-product-desktop .child-content');
     let activeIndex = -1; 
 
     titles.forEach((item, index) => {
@@ -149,7 +122,7 @@ get_header(); ?>
 
 
     // Accordion
-    const acc = document.querySelectorAll('.main-solution-mobile .accordion-trigger');
+    const acc = document.querySelectorAll('.main-product-mobile .accordion-trigger');
     acc.forEach((item) => {
         item.addEventListener("click", function() {
             this.classList.toggle("active");
