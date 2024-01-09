@@ -441,6 +441,17 @@
       }
     }
   }
+  &.-breadcrumb-absolute {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    .rank-math-breadcrumb { 
+      color: white;
+      a { 
+        color: white;
+      }
+    }
+  }
   .bg {
     position: absolute;
     top: -50px;
@@ -2292,6 +2303,72 @@ body.category .content-item .cat-links {
     padding-bottom: 50px;
     &:hover { 
       color: var(--s-accent-hover);
+    }
+  }
+}
+
+
+
+/*
+   ####  #####  ####   ####  #    #    # #####  
+  #        #   #    # #    # #   #     # #    # 
+   ####    #   #    # #      ####      # #    # 
+       #   #   #    # #      #  #      # #####  
+  #    #   #   #    # #    # #   #     # #   #  
+   ####    #    ####   ####  #    #    # #    # 
+*/
+.stock-ir {
+  display: flex;
+  background-color: white;
+  border: 1px solid #f2f2f2;
+  flex-direction: column;
+  padding-bottom: 50px;
+  .col { 
+    padding: 30px 25px;
+    border-right: 0;
+    width: 100%;
+    text-align: center;
+    &.col-2{
+      padding-bottom: 40px;
+    }
+    &.col-3, &.col-4 {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 25px;
+      padding-top: 8px;
+    }
+    .title-label { 
+      color: #333;
+      font-size: 25px;
+      font-weight: 700;
+    }
+    h3 { 
+      color: var(--s-accent);
+      font-size: 70px;
+      font-weight: 700;
+      line-height: 1;
+      margin: 0;
+    }
+    div { 
+      font-size: 20px;
+      font-weight: 300;
+      color: #333;
+      line-height: 1;
+    }
+    label { 
+      color: #333;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: normal;
+      margin: 0;
+    }
+    h4 { 
+      color: var(--s-accent);
+      font-size: 25px;
+      font-weight: 400;
+      line-height: normal;
     }
   }
 }

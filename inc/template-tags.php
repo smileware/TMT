@@ -266,7 +266,7 @@ function seed_banner_title($post_id) {
 	}
 	$permalink = get_the_permalink($post_id);
 	$breadcrumb='' ; 
-	if ( $title_style == 'breadcrumb' || $title_style == 'breadcrumb-xl') { 
+	if ( $title_style == 'breadcrumb' || $title_style == 'breadcrumb-xl' || $title_style == 'breadcrumb-absolute') { 
 		ob_start();
 		rank_math_the_breadcrumbs('<div id="breadcrumbs" class="bc">', '</div>', false);
 		$breadcrumb = ob_get_clean();
@@ -297,8 +297,8 @@ function seed_banner_title($post_id) {
 				$title = get_the_title($post_id); 
 			}
 		} else {
-			if($title_style != 'breadcrumb') { 
-				$title = get_the_title($post_id); 
+			if($title_style != 'breadcrumb' && $title_style != 'breadcrumb-absolute' ) { 
+				$title = get_the_title($post_id).'sdf'; 
 			}else { 
 				$title = '';
 			}

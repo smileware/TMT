@@ -22,7 +22,8 @@
                 "minimal": "Minimal",
                 "hidden": "Hidden",
                 "breadcrumb": "Breadcrumb",
-                "breadcrumb-xl": "Breadcrumb XL"
+                "breadcrumb-xl": "Breadcrumb XL",
+                "breadcrumb-absolute": "Breadcrumb Position Absolute"
             },
             "default_value": "default",
             "return_format": "value",
@@ -212,5 +213,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703781425
+    "modified": 1704815922
 }
