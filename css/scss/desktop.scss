@@ -1027,3 +1027,41 @@ body.headbar-d {
     }
   }
 }
+
+
+
+/*
+  # #####     #    #   ##   #    # 
+  # #    #    ##   #  #  #  #    # 
+  # #    #    # #  # #    # #    # 
+  # #####     #  # # ###### #    # 
+  # #   #     #   ## #    #  #  #  
+  # #    #    #    # #    #   ##   
+*/
+.template-navigation-desktop { 
+  display: flex;
+  margin: 40px 0;
+  .nav-item { 
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 68px;
+    background-color: #F2F2F2;
+    color: #828282;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 5px 5px 0px 0px;
+    transition: var(--c-transition-hover);
+    &.active { 
+      background-color: var(--s-accent);
+      color: white;
+      font-weight: 700;
+    }
+    &:hover { 
+      background-color: var(--s-accent);
+      color: var(--s-accent-hover);
+    }
+  }
+}

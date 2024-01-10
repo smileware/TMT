@@ -670,6 +670,51 @@ function acf_file_link() {
     );
 }
 
+
+/* === Shareholder Meeting Documents === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_shareholder_meeting' );
+}
+function acf_shareholder_meeting() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Shareholder Meeting',
+            'title' => 'Shareholder Meeting',
+            'description' => __('Display Shareholder Meeting File'),
+            'render_template' => 'template-parts/blocks/shareholder-meeting.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'groups',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
+/* === IR Documents === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_ir_documents' );
+}
+function acf_ir_documents() { 
+    acf_register_block_type(
+        array(
+            'name' => 'IR Documents',
+            'title' => 'IR Documents',
+            'description' => __('Display IR Documents File'),
+            'render_template' => 'template-parts/blocks/ir-documents.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-document',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
 function fetch_stock_information() {
     try { 
         $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';

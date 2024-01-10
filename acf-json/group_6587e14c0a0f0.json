@@ -30,6 +30,13 @@
                 "operator": "==",
                 "value": "sustainability"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ir"
+            }
         ]
     ],
     "menu_order": 0,
@@ -41,5 +48,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703403889
+    "modified": 1704860630
 }

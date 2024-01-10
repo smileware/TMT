@@ -782,5 +782,27 @@ p {
         -webkit-appearance: none;
         -moz-appearance: none;
     }
+    &.-multiple { 
+        > div { 
+            display: flex;
+            align-items: center;
+            margin-right: 26px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
 }
 
+.box-link { 
+    .kb-svg-icon-wrap, 
+    .kb-adv-text-inner { 
+        transition: var(--c-transition-hover);
+    }
+    &:hover { 
+        .kb-svg-icon-wrap, 
+        .kb-adv-text-inner { 
+            color: var(--s-accent-hover);
+        }
+    }
+}
