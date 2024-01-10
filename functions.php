@@ -713,6 +713,47 @@ function acf_ir_documents() {
         )
     );
 }
+/* === Securities Analyst === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_securities_analyst' );
+}
+function acf_securities_analyst() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Securities Analyst',
+            'title' => 'Securities Analyst',
+            'description' => __('Display Securities Analyst'),
+            'render_template' => 'template-parts/blocks/securities-analyst.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'groups',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+/* === Annual Report with Cover === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_annual_report_with_cover' );
+}
+function acf_annual_report_with_cover() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Annual Report with Cover',
+            'title' => 'Annual Report with Cover',
+            'description' => __('Display Annual Report with Cover'),
+            'render_template' => 'template-parts/blocks/annual-report-cover.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-default',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
 
 
 function fetch_stock_information() {
