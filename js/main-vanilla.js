@@ -319,3 +319,25 @@ if (navs) {
     });
   });
 }
+
+
+
+var board = document.querySelectorAll(".site-board");
+  if(board) { 
+    board.forEach((e) => {
+      e.addEventListener("click", function() { 
+        var name = e.dataset.name;
+        var position = e.dataset.position;
+        var background = e.dataset.background;
+        var img = e.dataset.img;
+
+        var modal = document.getElementById("board_modal");
+            modal.querySelector("#board_image").src = img;
+            modal.querySelector("#board_name").innerHTML = name;
+            modal.querySelector("#board_position").innerHTML = position;
+            modal.querySelector("#board_background").innerHTML = background;
+      });
+    });
+  }
+  
+

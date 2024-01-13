@@ -755,6 +755,27 @@ function acf_annual_report_with_cover() {
     );
 }
 
+/* === Board of Director Popup === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_board_of_directors' );
+}
+function acf_board_of_directors() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Board of Directors',
+            'title' => 'Board of Directors',
+            'description' => __('Display Board of Directors'),
+            'render_template' => 'template-parts/blocks/board-of-directors.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'businessman',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 
 if( !is_admin()) { 
     function fetch_content($url) {

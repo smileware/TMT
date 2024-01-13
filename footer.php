@@ -38,8 +38,19 @@
 
 </div>
 <!--#page-->
-
-<?php /* FOR SITE-MEMBER */ ?>
+<div class="s-modal -full modal-board" data-s-modal="site-board" id="board_modal">
+    <div class="board-container">
+        <span class="s-modal-close"><?php seed_icon('x'); ?></span>
+        <div class="pic">
+            <img src="" id="board_image" />
+        </div>
+        <div class="info">
+            <h2 id="board_name">นายชัย จรุงธนาภิบาล</h2>
+            <div class="position" id="board_position">dfasfasdfmalskdmfasdf</div>
+            <div class="background" id="board_background">aksdfsfkop</div>
+        </div>
+    </div>
+</div>
 <div class="s-modal-bg"></div>
 
 <?php wp_footer(); ?>

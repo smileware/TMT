@@ -1099,3 +1099,66 @@ body.headbar-d {
     margin-top: 100px;
   }
 }
+
+/*
+  #####   ####    ##   #####  #####     #####   ####  #####  #    # #####  
+  #    # #    #  #  #  #    # #    #    #    # #    # #    # #    # #    # 
+  #####  #    # #    # #    # #    #    #    # #    # #    # #    # #    # 
+  #    # #    # ###### #####  #    #    #####  #    # #####  #    # #####  
+  #    # #    # #    # #   #  #    #    #      #    # #      #    # #      
+  #####   ####  #    # #    # #####     #       ####  #       ####  #      
+*/
+.board-directors { 
+  .s-grid { 
+    gap: 50px;
+    margin-bottom: 100px;
+    &.-even { 
+      grid-template-columns: 4fr 6fr;
+      .info { 
+        text-align: right;
+      }
+    }
+    &.-odd {
+      grid-template-columns: 6fr 4fr;
+      .info { 
+        text-align: left;
+        order: 1;
+      }
+      .site-board { 
+        order: 2;
+      }
+    }
+    .info { 
+      h3 { 
+        margin-top: 0;
+        font-size: 50px;
+      }
+      .position { 
+        font-size: 35px;
+      }
+    }
+  }
+}
+.modal-board {
+  .board-container { 
+    max-width: 1080px;
+    width: 1080px;
+    flex-direction: row;
+    .pic { 
+      min-width: 400px;
+      width: 400px;
+    }
+    .info { 
+      padding: 45px 40px 20px;
+      h2 { 
+        font-size: 50px;
+      }
+      .position , .position > * { 
+        font-size: 30px;
+      }
+      .background , .background > * { 
+        font-size: 25px;
+      }
+    }
+  }
+}
