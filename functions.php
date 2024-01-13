@@ -713,68 +713,138 @@ function acf_ir_documents() {
         )
     );
 }
-
-
-function fetch_stock_information() {
-    try { 
-        $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';
-        $section = file_get_contents($url);
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($section);
-        $finder = new DomXPath($dom);
-    
-        $classname = "quote-market-lastInfo";
-        $spaner = $finder->query("//*[contains(@class, '$classname')]");
-        $date = $spaner->item(1)->nodeValue;
-        $date = str_replace('Last Update :', '', $date);
-        $timestamp = strtotime($date);
-        $localized_date = date_i18n('d M Y H:i:s', $timestamp);
-        // ราคาเปิด
-        $classopen = "item-list-details d-flex flex-column price-info-stock-detail col-5";
-        $open = $finder->query("//*[contains(@class, '$classopen')]");
-        $openvalue = $open->item(5)->nodeValue;
-        $openvalue = str_replace('Open', '', $openvalue);
-        // ราคาปิด
-        $classclosing = "value text-white mb-0 me-2 lh-1";
-        $closing = $finder->query("//*[contains(@class, '$classclosing')]");
-        $closingvalue = $closing->item(0)->nodeValue;
-        // ราคาก่อนหน้า
-        $classprior = "item-list-details d-flex flex-column price-info-stock-detail col-5";
-        $prior = $finder->query("//*[contains(@class, '$classprior')]");
-        $priorvalue = $prior->item(4)->nodeValue;
-        $priorvalue = str_replace('Prior', '', $priorvalue);
-        // เปลี่ยนแปลง
-        $classpercent = "d-flex mb-0 pb-2";
-        $percent = $finder->query("//*[contains(@class, '$classpercent')]");
-        $percentvalue = $percent->item(0)->nodeValue;
-        // ปริมาณ
-        $classvolumn = "item-list-details d-flex flex-column price-info-stock-detail col-5";
-        $volumn = $finder->query("//*[contains(@class, '$classvolumn')]");
-        $volumnvalue = $volumn->item(6)->nodeValue;
-        $volumnvalue = str_replace('Volume (Shares)', '', $volumnvalue);
-
-        $value = array(
-            'stock_date' => trim($localized_date) , 
-            'stock_date_en' => trim($date), 
-            'stock_price' => trim($closingvalue),
-            'stock_change' => trim($percentvalue),
-            'stock_open' =>  $openvalue,
-            'stock_prior' =>  $priorvalue,
-            'stock_volumn' => $volumnvalue
-        );
-        foreach ($value as $field_key => $field_value) {
-            if (!empty(trim($field_value))) {
-                update_field($field_key, $field_value, 'option');
-            }
-        }   
-    
-    }catch (Exception $e) {
-        echo $e;
-    }
+/* === Securities Analyst === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_securities_analyst' );
 }
-fetch_stock_information();
+function acf_securities_analyst() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Securities Analyst',
+            'title' => 'Securities Analyst',
+            'description' => __('Display Securities Analyst'),
+            'render_template' => 'template-parts/blocks/securities-analyst.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'groups',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+/* === Annual Report with Cover === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_annual_report_with_cover' );
+}
+function acf_annual_report_with_cover() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Annual Report with Cover',
+            'title' => 'Annual Report with Cover',
+            'description' => __('Display Annual Report with Cover'),
+            'render_template' => 'template-parts/blocks/annual-report-cover.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-default',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
+if( !is_admin()) { 
+    function fetch_content($url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Timeout in seconds
+        $content = curl_exec($ch);
+        $error = curl_error($ch);
+        curl_close($ch);
     
+        if ($error) {
+            throw new Exception("Curl Error: " . $error);
+        }
+        return $content;
+    }
+    function fetch_stock_information() {
+        $cached_data = get_transient('stock_information');
+        if ($cached_data) {
+            return $cached_data;
+        }
+    
+        try { 
+            $url = 'https://www.set.or.th/en/market/product/stock/quote/tmt/price';
+            // $section = file_get_contents($url);
+            $content = fetch_content($url);
+            if (!$content) {
+                throw new Exception("Failed to fetch content from the URL.");
+            }
+            $dom = new DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML($content);
+            libxml_clear_errors(); // Clear errors after loading HTML
+            $finder = new DomXPath($dom);
+        
+            $classname = "quote-market-lastInfo";
+            $spaner = $finder->query("//*[contains(@class, '$classname')]");
+            $date = $spaner->item(1)->nodeValue;
+            $date = str_replace('Last Update :', '', $date);
+            $timestamp = strtotime($date);
+            $localized_date = date_i18n('d M Y H:i:s', $timestamp);
+            // ราคาเปิด
+            $classopen = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+            $open = $finder->query("//*[contains(@class, '$classopen')]");
+            $openvalue = $open->item(5)->nodeValue;
+            $openvalue = str_replace('Open', '', $openvalue);
+            // ราคาปิด
+            $classclosing = "value text-white mb-0 me-2 lh-1";
+            $closing = $finder->query("//*[contains(@class, '$classclosing')]");
+            $closingvalue = $closing->item(0)->nodeValue;
+            // ราคาก่อนหน้า
+            $classprior = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+            $prior = $finder->query("//*[contains(@class, '$classprior')]");
+            $priorvalue = $prior->item(4)->nodeValue;
+            $priorvalue = str_replace('Prior', '', $priorvalue);
+            // เปลี่ยนแปลง
+            $classpercent = "d-flex mb-0 pb-2";
+            $percent = $finder->query("//*[contains(@class, '$classpercent')]");
+            $percentvalue = $percent->item(0)->nodeValue;
+            // ปริมาณ
+            $classvolumn = "item-list-details d-flex flex-column price-info-stock-detail col-5";
+            $volumn = $finder->query("//*[contains(@class, '$classvolumn')]");
+            $volumnvalue = $volumn->item(6)->nodeValue;
+            $volumnvalue = str_replace('Volume (Shares)', '', $volumnvalue);
+    
+            $value = array(
+                'stock_date' => trim($localized_date) , 
+                'stock_date_en' => trim($date), 
+                'stock_price' => trim($closingvalue),
+                'stock_change' => trim($percentvalue),
+                'stock_open' =>  $openvalue,
+                'stock_prior' =>  $priorvalue,
+                'stock_volumn' => $volumnvalue
+            );
+            set_transient('stock_information', $value, 60*60); 
+            foreach ($value as $field_key => $field_value) {
+                if (!empty(trim($field_value))) {
+                    update_field($field_key, $field_value, 'option');
+                }
+            }   
+        
+        }catch (Exception $e) {
+            echo $e;
+        }
+    }
+    fetch_stock_information();
+        
+    
+}
 
 
 /**

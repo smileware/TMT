@@ -408,7 +408,7 @@
     }
     .title { 
       padding-top: 10px;
-      line-height: normal;
+      line-height: 1.05;
     }
   }
   &.-minimal {
@@ -2435,5 +2435,129 @@ body.category .content-item .cat-links {
     .dropdown-content {
       display: block;
     }
+  }
+}
+
+/*
+  # #    # #    # ######  ####  #####  ####  #####  
+  # ##   # #    # #      #        #   #    # #    # 
+  # # #  # #    # #####   ####    #   #    # #    # 
+  # #  # # #    # #           #   #   #    # #####  
+  # #   ##  #  #  #      #    #   #   #    # #   #  
+  # #    #   ##   ######  ####    #    ####  #    # 
+*/
+.top10-investor-table { 
+  &.wp-block-table.is-style-stripes {
+    table { 
+      thead { 
+        border-bottom: 2px solid var(--s-accent);
+        th { 
+          color: var(--s-accent-hover);
+          font-size: 22px;
+          text-align: center;
+          &:nth-child(1) {
+            text-align: left;
+            padding-left: 35px;
+          } 
+        }
+      }
+      tbody  { 
+        tr {
+          &:nth-child(even) {
+            background-color: #F1FAFF;
+          }  
+          &:nth-child(odd) {
+            background-color: #fff;
+          }  
+          &:last-child { 
+            border-bottom: 2px solid  var(--s-accent);
+          }
+          td { 
+            color: #828282;
+            font-size: 22px;
+            font-weight: 400;
+            padding: 18px;
+            text-align: center;
+            min-width: 200px;
+            &:first-child {
+              padding-left: 35px;
+              text-align: left;
+              color: #333;
+              min-width: 350px;
+            }  
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+    ##   #    #   ##   #      #   #  ####  ##### 
+   #  #  ##   #  #  #  #       # #  #        #   
+  #    # # #  # #    # #        #    ####    #   
+  ###### #  # # ###### #        #        #   #   
+  #    # #   ## #    # #        #   #    #   #   
+  #    # #    # #    # ######   #    ####    #   
+*/
+.securities-analysts { 
+  grid-gap: 25px 20px;
+}
+.card-analyst { 
+  padding: 30px 25px;
+  border: 1px solid #F2F2F2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .company-name { 
+    color: #333;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .divider {
+    background-color: var(--s-accent-hover);
+    width: 42px;
+    height: 3px;
+    margin: 20px 0;
+  }
+  .person { 
+    margin-top: 15px;
+    position: relative;
+    svg { 
+      width: 15px;
+      height: 15px;
+      color: var(--s-accent-hover);
+    }
+    h4 { 
+      color: #333;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: normal;
+      margin: 0;
+    }
+    span { 
+      margin-left: var(--s-space);
+      color: #4F4F4F;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    &:after { 
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 30px;
+      background-color: #e0e0e0;
+      right: 0px;
+      top: 12px;
+    }
+    &:last-child { 
+      &:after { 
+        display: none;
+      }
+    }
+  }
+  .grid-person  { 
+    grid-gap: 0;
   }
 }
