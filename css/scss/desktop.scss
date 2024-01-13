@@ -267,6 +267,17 @@ body.headbar-d {
       font-size: 30px;
     }
   }
+  &.-webcast {
+    .pic {
+      height: 230px;
+      img {
+        height: 230px;
+      }
+    }
+    .entry-link a{ 
+      font-size: 18px;
+    }
+  }
 }
 
 
@@ -1079,5 +1090,12 @@ body.headbar-d {
 .card-analyst { 
   .grid-person  { 
     grid-gap: 25px;
+  }
+}
+
+
+.page-template-webcast-and-activities { 
+  .document-header { 
+    margin-top: 100px;
   }
 }

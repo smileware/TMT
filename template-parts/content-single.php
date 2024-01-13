@@ -43,11 +43,15 @@
                     }   
                     echo $entry_cat;
                     break;
+                case "webcast-and-activity":
+                    break;
                 default:
                     seed_posted_cats(false);
                     break;
             }
-            echo '<span> | </span>';
+            if(get_post_type() != "webcast-and-activity") {
+                echo '<span> | </span>';
+            }
             seed_posted_on(false); 
         ?>
     </div>
@@ -81,29 +85,52 @@
             }else { 
                 if (get_post_type() == 'award') {
                     $taxo = 'award-type';
+                    $terms = get_the_terms(get_the_ID(), $taxo);
+                    foreach ($terms as $term) {
+                        $term_IDs[] = $term->term_id;
+                    }
+                    $args = array(
+                        'post_type' => get_post_type(),
+                        'posts_per_page' => 3,
+                        'post_status' => 'publish',
+                        'post__not_in' => array( get_the_ID() ),
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => $taxo,
+                                'terms' =>  $term_IDs
+                            )
+                        )
+                    );
                 }
                 elseif (get_post_type() == 'sustainability') {
                     $taxo = 'sustainability-type';
+                    $terms = get_the_terms(get_the_ID(), $taxo);
+                    foreach ($terms as $term) {
+                        $term_IDs[] = $term->term_id;
+                    }
+                    $args = array(
+                        'post_type' => get_post_type(),
+                        'posts_per_page' => 3,
+                        'post_status' => 'publish',
+                        'post__not_in' => array( get_the_ID() ),
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => $taxo,
+                                'terms' =>  $term_IDs
+                            )
+                        )
+                    );
+                }
+                elseif (get_post_type() == 'webcast-and-activity') {
+                    $args = array(
+                        'post_type' => get_post_type(),
+                        'posts_per_page' => 3,
+                        'post_status' => 'publish',
+                        'post__not_in' => array( get_the_ID() )
+                    );
                 }
                 
-                $terms = get_the_terms(get_the_ID(), $taxo);
-                foreach ($terms as $term) {
-                    $term_IDs[] = $term->term_id;
-                }
-                $args = array(
-                    'post_type' => get_post_type(),
-                    'posts_per_page' => 3,
-                    'post_status' => 'publish',
-                    'post__not_in' => array( get_the_ID() ),
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => $taxo,
-                            'terms' =>  $term_IDs
-                        )
-                    )
-                );
             }
-           
             $the_query = new WP_Query( $args );
         ?>
         <?php if ($the_query->found_posts): ?>
@@ -111,7 +138,12 @@
                 <?php
                     while ( $the_query->have_posts() ) {
                         $the_query->the_post();
-                        get_template_part( 'template-parts/components/card', 'default' );
+                        if(get_post_type() == 'webcast-and-activity') { 
+                            
+                            get_template_part( 'template-parts/components/card', 'webcast' );
+                        }else { 
+                            get_template_part( 'template-parts/components/card', 'default' );
+                        }
                     }
                     wp_reset_postdata();
                 ?>
@@ -122,7 +154,12 @@
                     while ( $the_query->have_posts() ) {
                         $the_query->the_post();
                         echo '<div class="slider">';
-                        get_template_part( 'template-parts/components/card', 'default' );
+                        if(get_post_type() == 'webcast-and-activity') { 
+                            
+                            get_template_part( 'template-parts/components/card', 'webcast' );
+                        }else { 
+                            get_template_part( 'template-parts/components/card', 'default' );
+                        }
                         echo '</div>';
                     }
                     wp_reset_postdata();

@@ -707,6 +707,37 @@
       }
     }
   }
+  &.-webcast { 
+    box-shadow: none;
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid #F2F2F2;
+    .pic {
+      height: 202px;
+      position: relative;
+      img {
+        height: 202px;
+      }
+    }
+    .file-btns { 
+      .button { 
+        &:first-child { 
+          padding-left: 0;
+          margin-left: 0;
+        }
+      }
+    }
+    .overlay { 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.50) ;
+    }
+  }
 }
 // Card document download
 .content-document { 
@@ -2559,5 +2590,12 @@ body.category .content-item .cat-links {
   }
   .grid-person  { 
     grid-gap: 0;
+  }
+}
+
+.page-template-webcast-and-activities { 
+  .document-header { 
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
