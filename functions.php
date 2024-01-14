@@ -112,7 +112,6 @@ add_action('widgets_init', 'seed_widgets_init');
  */
 function seed_scripts()
 {
-
     wp_enqueue_style('s-mobile', get_theme_file_uri('/css/mobile.css'), array(), false);
     wp_enqueue_style('s-desktop', get_theme_file_uri('/css/desktop.css'), array(), false , '(min-width: 1025px)');
 
@@ -143,6 +142,9 @@ function seed_scripts()
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
+    // Chart JS
+    wp_enqueue_script('s-chartjs', get_theme_file_uri('/js/chart.js'), array(), false, true);
+    wp_enqueue_script('s-chartjs-datalabels', get_theme_file_uri('/js/chartjs-plugin-datalabels.js'), array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'seed_scripts');
 
@@ -797,7 +799,26 @@ function acf_corporate_governance_documents() {
     );
 }
 
-
+/* === Chart === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_chart' );
+}
+function acf_chart() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Chart',
+            'title' => 'Chart',
+            'description' => __('Display Chart'),
+            'render_template' => 'template-parts/blocks/chart.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'chart-bar',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
 
 if( !is_admin()) { 
     function fetch_content($url) {

@@ -2728,3 +2728,45 @@ body.category .content-item .cat-links {
     }
   }
 }
+
+/*
+   ####  #    #   ##   #####  ##### 
+  #    # #    #  #  #  #    #   #   
+  #      ###### #    # #    #   #   
+  #      #    # ###### #####    #   
+  #    # #    # #    # #   #    #   
+   ####  #    # #    # #    #   #   
+*/
+.chart-container  {
+  .chart-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 15px 30px;
+    border-bottom: 1px solid #F2F2F2;
+    .chart-name { 
+      color: #000;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: 1;
+      margin: 0;
+    }
+    .chart-unit { 
+      color: #000;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1;
+    }
+  }
+  .chart-wrapper { 
+    padding: 15px 30px;
+  }
+  .chart-legend { 
+    text-align: center;
+    color: #4F4F4F;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: var(--s-space);
+  }
+}

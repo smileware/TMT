@@ -341,3 +341,107 @@ var board = document.querySelectorAll(".site-board");
   }
   
 
+
+function createChart(chartID, barData = [], label = []){ 
+
+  const ctx = document.getElementById(chartID).getContext('2d');
+  const maxValue = Math.max(...barData.map(d => d.value));
+  const pixelToValueRatio = maxValue / ctx.canvas.height;
+  const offsetInPixels = 130;
+  const offsetValue = pixelToValueRatio * offsetInPixels;
+
+  const trendDataset = {
+      type: 'line',
+      label: 'Trend',
+      data: barData.map(d => ({ x: barData.indexOf(d), y: d.value + offsetValue })),
+      borderColor: '#BDBDBD',
+      borderDash: [2, 1],
+      borderWidth: 1,
+      pointBorderColor: '#FF5722',
+      pointBackgroundColor: '#FF5722',
+      pointRadius: 5,
+      backgroundColor: 'transparent',
+      fill: false,
+      tension: 0,
+      datalabels: {
+          display: true,
+          color: '#FF5722',
+          formatter: function(value, context) {
+              return barData[context.dataIndex].trend + '%';
+          },
+          align: 'top',
+          offset: 10
+      }
+  };
+
+  const barDataset = {
+      type: 'bar',
+      label: 'Values',
+      data: barData.map(d => d.value),
+      backgroundColor: function(context) {
+          const index = context.dataIndex;
+          const count = context.dataset.data.length;
+          return index === count - 1 ? '#003955' : '#E0E0E0';
+      },
+      barThickness: 35,
+      datalabels: {
+          display: true,
+          color: '#000',
+          anchor: 'end',
+          align: 'top',
+          font: {
+              size: 12,
+              weight: 500
+          },
+          offset: 10,
+          formatter: function(value, context) {
+              return value.toLocaleString(); // Display numeric value
+          }
+      }
+  };
+
+  const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+          x: {
+              type: 'category',
+              grid: {
+                  display: false
+              }
+          },
+          y: {
+              display: false
+          },
+      },
+      plugins: {
+          tooltip: {
+              enabled: false
+          },
+          datalabels: {
+              anchor: 'end',
+              align: 'top'
+          },
+          legend: {
+              display: false
+          },
+      },
+      layout: {
+          padding: {
+              top: 50,  
+          }
+      }
+  };
+
+  const chartData = {
+      labels: label,
+      datasets: [barDataset, trendDataset]
+  };
+
+  Chart.register(ChartDataLabels);
+  new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: chartOptions
+  });
+}
