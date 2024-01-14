@@ -57,6 +57,9 @@ html {
 .text-underline {
     text-decoration: underline;
 }
+.display-inline-block { 
+    display: inline-block !important;
+}
 .s-slider {
     &.-hidedot {
         .dots {

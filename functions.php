@@ -776,6 +776,28 @@ function acf_board_of_directors() {
     );
 }
 
+/* === Corporate Governance Documents === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_corporate_governance_documents' );
+}
+function acf_corporate_governance_documents() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Corporate Governance Documents',
+            'title' => 'Corporate Governance Documents',
+            'description' => __('Display Corporate Governance Documents File'),
+            'render_template' => 'template-parts/blocks/corporate-governance-documents.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-default',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
 
 if( !is_admin()) { 
     function fetch_content($url) {

@@ -44,6 +44,13 @@
                 "operator": "==",
                 "value": "webcast-and-activity"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "governance"
+            }
         ]
     ],
     "menu_order": 0,
@@ -55,5 +62,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1705144413
+    "modified": 1705215639
 }
