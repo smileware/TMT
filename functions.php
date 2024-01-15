@@ -820,6 +820,27 @@ function acf_chart() {
     );
 }
 
+/* === Financial Table === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_financial_table' );
+}
+function acf_financial_table() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Financial Table',
+            'title' => 'Financial Table',
+            'description' => __('Display Financial Table'),
+            'render_template' => 'template-parts/blocks/financial-table.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'editor-table',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 if( !is_admin()) { 
     function fetch_content($url) {
         $ch = curl_init();

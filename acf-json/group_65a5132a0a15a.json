@@ -1,0 +1,45 @@
+{
+    "key": "group_65a5132a0a15a",
+    "title": "Block Financial Table",
+    "fields": [
+        {
+            "key": "field_65a5132b82918",
+            "label": "Financial Table File",
+            "name": "financial_table_file",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Please note, in your CSV file, a row will be treated as merged if it is entirely empty or if only the first cell is filled.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "csv"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/financial-table"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1705319158
+}
