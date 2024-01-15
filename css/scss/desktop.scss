@@ -669,18 +669,28 @@ body.headbar-d {
 .document-container { 
   border: none;
   padding: 0;
-  .s-grid {
-    border: 1px solid #F2F2F2;
-    padding: 30px 50px 80px;
-  }
   .document-table-header { 
     .dth-date { 
       min-width: 185px;
       padding-left: 35px;
     }
   }
+  &.-latest {
+    margin-top: 10px;
+    .content-document { 
+      margin-top: 0;
+      .file-btns {
+        justify-content: flex-end;
+        .button{
+          &:first-child { 
+            margin-left: inherit;
+            padding-left: inherit;
+          }
+        }
+      }
+    }
+  }
 }
-
 
 /*
   #    # ###### #    #  ####  
@@ -1174,4 +1184,38 @@ body.headbar-d {
 */
 .financial-table-container { 
   padding-right: 0;
+}
+
+
+
+.ir-news-container {
+  .s-grid { 
+    grid-gap: 60px;
+  }
+}
+.ir-news-card { 
+  min-height: 280px;
+  &:first-child { 
+    &::after { 
+      height: 100%;
+      width: 1px;
+      right: -30px;
+      left: unset;
+      bottom: unset;
+    }
+  }
+}
+
+.webcast-highlight { 
+  .webcast-highlight-card {
+    flex-direction: row;
+    h3 { 
+      margin-right: var(--s-space);
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .entry-link { 
+      text-align: right;
+    }
+  }
 }

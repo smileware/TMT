@@ -715,6 +715,28 @@ function acf_ir_documents() {
         )
     );
 }
+
+
+/* === IR Documents Latest === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_ir_documents_latest' );
+}
+function acf_ir_documents_latest() { 
+    acf_register_block_type(
+        array(
+            'name' => 'IR Documents Latest',
+            'title' => 'IR Documents Latest',
+            'description' => __('Display IR Documents File Latest'),
+            'render_template' => 'template-parts/blocks/ir-documents-latest.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'media-document',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
 /* === Securities Analyst === */
 if (function_exists('acf_register_block_type')) {
     add_action( 'acf/init', 'acf_securities_analyst' );
@@ -819,6 +841,26 @@ function acf_chart() {
         )
     );
 }
+/* === Investor Chart === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_investor_chart' );
+}
+function acf_investor_chart() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Investor Chart',
+            'title' => 'Investor Chart',
+            'description' => __('Display Investor Chart'),
+            'render_template' => 'template-parts/blocks/investor-chart.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'chart-bar',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
 
 /* === Financial Table === */
 if (function_exists('acf_register_block_type')) {
@@ -840,6 +882,49 @@ function acf_financial_table() {
         )
     );
 }
+
+/* === IR News === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_ir_news' );
+}
+function acf_ir_news() { 
+    acf_register_block_type(
+        array(
+            'name' => 'IR News',
+            'title' => 'IR News',
+            'description' => __('Display IR News'),
+            'render_template' => 'template-parts/blocks/ir-news.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'megaphone',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+/* === Webcast Highlight === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_webcast_highlight' );
+}
+function acf_webcast_highlight() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Webcast Highlight',
+            'title' => 'Webcast Highlight',
+            'description' => __('Display Webcast Highlight'),
+            'render_template' => 'template-parts/blocks/webcast-highlight.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'megaphone',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
 
 if( !is_admin()) { 
     function fetch_content($url) {
