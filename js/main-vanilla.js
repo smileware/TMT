@@ -445,3 +445,27 @@ function createChart(chartID, barData = [], label = []){
       options: chartOptions
   });
 }
+function createAnimation(json, elem, linkID) { 
+  var animationContainer = document.getElementById(elem);
+  var linkElement = document.getElementById(linkID); 
+  var animation = lottie.loadAnimation({
+      container: animationContainer, 
+      renderer: 'svg',
+      loop: false,
+      autoplay: false,
+      path: json
+  });
+
+  linkElement.addEventListener('mouseenter', function() {
+    animation.setDirection(1); 
+    animation.setSpeed(1);
+    animation.goToAndPlay(0); 
+  });
+
+  linkElement.addEventListener('mouseleave', function() {
+    animation.setDirection(-1);
+    animation.setSpeed(1.5);
+    animation.play(); 
+  });
+}
+

@@ -3,11 +3,27 @@
     "title": "Block Single Featured Product",
     "fields": [
         {
+            "key": "field_65a55bdb8d735",
+            "label": "Product Link",
+            "name": "product_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url"
+        },
+        {
             "key": "field_658545aebdb71",
-            "label": "Product Title",
-            "name": "product_title",
+            "label": "Product Type",
+            "name": "product_type",
             "aria-label": "",
-            "type": "text",
+            "type": "radio",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,17 +31,23 @@
                 "width": "",
                 "class": "",
                 "id": ""
+            },
+            "choices": {
+                "flat_products": "Flat Products",
+                "cold_products": "Cold Formed Products",
+                "hot_products": "Hot Rolled Steel Section"
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "return_format": "array",
+            "allow_null": 0,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
         },
         {
-            "key": "field_65854614bdb72",
-            "label": "Product BG Default",
-            "name": "product_bg_default",
+            "key": "field_65a55def11599",
+            "label": "Product Background (Before Hover)",
+            "name": "product_background",
             "aria-label": "",
             "type": "image",
             "instructions": "",
@@ -48,11 +70,11 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_65854684bdb73",
-            "label": "Product BG Frame1",
-            "name": "product_bg_frame1",
+            "key": "field_65a55b908d731",
+            "label": "Product Animation",
+            "name": "product_animation",
             "aria-label": "",
-            "type": "image",
+            "type": "file",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -63,102 +85,40 @@
             },
             "return_format": "url",
             "library": "all",
-            "min_width": "",
-            "min_height": "",
             "min_size": "",
-            "max_width": "",
-            "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
+            "mime_types": ""
         },
         {
-            "key": "field_6585468ebdb74",
-            "label": "Product BG Frame2",
-            "name": "product_bg_frame2",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
-        },
-        {
-            "key": "field_65854694bdb75",
-            "label": "Product BG Frame3",
-            "name": "product_bg_frame3",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
-        },
-        {
-            "key": "field_658546b3bdb76",
-            "label": "Product Sub Category Column",
-            "name": "product_sub_category_column",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_658547b4bdb77",
-            "label": "Product Sub Category Repeater",
-            "name": "product_sub_category_repeater",
+            "key": "field_65a55ba68d732",
+            "label": "Product Subcategory",
+            "name": "product_subcategory_1col",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_658545aebdb71",
+                        "operator": "==",
+                        "value": "flat_products"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_658545aebdb71",
+                        "operator": "==",
+                        "value": "hot_products"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
+            "layout": "row",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -167,9 +127,9 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_658547cabdb78",
-                    "label": "Product Sub Category",
-                    "name": "product_sub_category",
+                    "key": "field_65a55bca8d734",
+                    "label": "Product Name",
+                    "name": "product_name",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -185,7 +145,106 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "parent_repeater": "field_658547b4bdb77"
+                    "parent_repeater": "field_65a55ba68d732"
+                }
+            ]
+        },
+        {
+            "key": "field_65a55bea8d736",
+            "label": "Product Subcategory",
+            "name": "product_subcategory_2col",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_658545aebdb71",
+                        "operator": "==",
+                        "value": "cold_products"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_65a55bea8d737",
+                    "label": "Product Name",
+                    "name": "product_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65a55bea8d736"
+                },
+                {
+                    "key": "field_65a55c198d738",
+                    "label": "Product Sub-sub Category",
+                    "name": "product_sub",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add Row",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_65a55c5d8d739",
+                            "label": "Product Name",
+                            "name": "product_sub_sub_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_65a55c198d738"
+                        }
+                    ],
+                    "parent_repeater": "field_65a55bea8d736"
                 }
             ]
         }
@@ -208,5 +267,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703234569
+    "modified": 1705380173
 }

@@ -1219,3 +1219,102 @@ body.headbar-d {
     }
   }
 }
+
+
+/*
+  #####  #####   ####  #####  #    #  ####  ##### 
+  #    # #    # #    # #    # #    # #    #   #   
+  #    # #    # #    # #    # #    # #        #   
+  #####  #####  #    # #    # #    # #        #   
+  #      #   #  #    # #    # #    # #    #   #   
+  #      #    #  ####  #####   ####   ####    #   
+*/
+.featured-product {
+  min-height: 650px;
+  padding: 50px 35px;
+  .featured-subproduct { 
+    margin-top: var(--s-space);
+    visibility: visible;
+    height: auto;
+    div {
+      color: #FFF;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+  }
+  &.-type2 { 
+    .featured-subproduct.s-grid { 
+      grid-gap: 0 10px;
+      .sub-item {
+        font-weight: 500;
+      }
+      .sub-sub-item {
+        color: rgba(255, 255, 255, 0.80);
+        font-size: 20px;
+        font-weight: 400;
+      }
+    }
+  }
+  &.-flat { 
+    padding-left: calc((100% - 441.666667px) +  25px);
+  }
+
+  &:hover { 
+    background-color: var(--s-accent);
+    .featured-product-title {
+      color: white;
+    }
+    .animated { 
+      .animated-bg {
+        opacity: 0;
+      }
+      .lottie-animated { 
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+.relate-products { 
+  .relate-item { 
+    min-height: 388px;
+    padding-left:  100px;
+    padding-right:  100px;
+    &:first-child { 
+      padding-left: calc((100% - 650px) + 25px);
+    }
+    img { 
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 400px;
+    }
+    .animated { 
+      .lottie-animated { 
+        opacity: 0;
+        position: absolute;
+        right:0;
+        bottom: 0;
+        transition: var(--c-transition-hover);
+        height: 100%; 
+      }
+    }
+    &:hover { 
+      background-color: var(--s-accent);
+      .featured-product-title {
+        color: white;
+      }
+      .animated { 
+        .animated-bg {
+          opacity: 0;
+        }
+        .lottie-animated { 
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

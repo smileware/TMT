@@ -145,6 +145,8 @@ function seed_scripts()
     // Chart JS
     wp_enqueue_script('s-chartjs', get_theme_file_uri('/js/chart.js'), array(), false, true);
     wp_enqueue_script('s-chartjs-datalabels', get_theme_file_uri('/js/chartjs-plugin-datalabels.js'), array(), false, true);
+    // Lotties
+    wp_enqueue_script('s-lottie', get_theme_file_uri('/js/lottie.js'), array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'seed_scripts');
 

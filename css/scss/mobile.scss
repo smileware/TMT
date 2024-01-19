@@ -2988,3 +2988,104 @@ body.category .content-item .cat-links {
     }
   }
 }
+
+
+
+/*
+  #####  #####   ####  #####  #    #  ####  ##### 
+  #    # #    # #    # #    # #    # #    #   #   
+  #    # #    # #    # #    # #    # #        #   
+  #####  #####  #    # #    # #    # #        #   
+  #      #   #  #    # #    # #    # #    #   #   
+  #      #    #  ####  #####   ####   ####    #   
+*/
+.featured-product-link { 
+  .featured-product {
+    border-top: 1px solid #f2f2f2;    
+    border-bottom: 1px solid #f2f2f2;    
+    border-right: 1px solid #f2f2f2;    
+  }
+  &:last-child {
+    .featured-product {
+      border-right: 0;
+    }
+  }
+}
+.featured-product {
+  min-height: 500px;
+  padding: 50px 25px;
+  position: relative;
+  transition: var(--c-transition-hover);
+  
+  .featured-product-title {
+    color: var(--s-accent-hover);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: .8;
+    text-transform: uppercase;
+    max-width: 220px;
+    transition: var(--c-transition-hover);
+  }
+  .featured-subproduct { 
+    visibility: hidden;
+    height: 0;
+  }
+  .animated { 
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    .animated-bg {
+      padding-bottom: 75px;
+      transition: var(--c-transition-hover);
+      text-align: right;
+      img {
+        width: 85%;
+      }
+    }
+    .lottie-animated { 
+      opacity: 0;
+      position: absolute;
+      right:0;
+      bottom: 0;
+      transition: var(--c-transition-hover); 
+    }
+    svg {
+      width: 100%;
+    }
+  }
+}
+
+
+.relate-products { 
+  grid-gap: 0;
+  .relate-item { 
+    border-top: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    min-height: 500px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    padding-left:  25px;
+    padding-right:  25px;
+    position: relative;
+    h3 { 
+      color: var(--s-accent-hover);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: .8;
+      text-transform: uppercase;
+      max-width: 220px;
+    }
+    img { 
+      position: absolute;
+      right: 0;
+      bottom: 50px;
+      width: 400px;
+    }
+    .animated { 
+      .lottie-animated { 
+        opacity: 0;
+      }
+    }
+  }
+}

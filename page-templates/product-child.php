@@ -127,7 +127,36 @@ get_header(); ?>
     </div>
 </div>
 
-<!-- TODO: Add related product with animation -->
+
+<!-- Related Products -->
+<?php   
+    wp_reset_postdata(); 
+
+    $parent_id = wp_get_post_parent_id(get_the_ID());
+    $relates = get_field( "product_relates", $parent_id);
+    $unique_id = 'lottie_'.uniqid();
+    $link_id = 'link_'.uniqid();
+
+    if($relates) { 
+        echo '<div class="s-grid -d2 relate-products">';
+        $count = 1;
+        foreach($relates as $relate) { 
+            echo '<a href="'. $relate['product_relate_link'] .'" class="relate-item" id="'.   $link_id . '-' . $count . '">';
+            echo '<h3>' . $relate['product_relate_name'] . '</h3>';
+            echo '<div class="animated">';
+            echo '<div class="lottie-animated" id="' . $unique_id . '-' . $count . '" data-json="'. $relate['product_relate_hover_animation'] .'"></div>';
+            echo '<div class="animated-bg">';
+            echo '<img src="'. $relate['product_relate_background'] .'" alt="Product '. $relate['product_relate_name'] .'" />';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+            $count += 1;
+        }
+        echo '</div>';
+    }
+?>
+
+
 <footer class="entry-footer">
     <?php seed_entry_footer(); ?>
 </footer>
@@ -155,8 +184,6 @@ get_header(); ?>
         activeIndex = 0;
     }
 
-
-
     // Accordion
     const acc = document.querySelectorAll('.main-product-mobile .accordion-trigger');
     acc.forEach((item) => {
@@ -166,6 +193,18 @@ get_header(); ?>
             panel.classList.toggle("active");
             panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var relate_items = document.querySelectorAll('.relate-item');
+            relate_items.forEach(function(item) {
+                var elemt = item.querySelector(".lottie-animated");
+                var id = elemt.id;
+                var link_id = item.id;
+                var json = elemt.dataset.json;
+                console.log(json, id, link_id);
+                createAnimation(json, id, link_id);
+            });
     });
 </script>
 
