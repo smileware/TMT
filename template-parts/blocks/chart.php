@@ -27,7 +27,7 @@
         <div class="chart-unit"><?php echo $chart_unit; ?></div>
     </div>
     <div class="chart-wrapper">
-        <canvas id="<?php echo $unique_id; ?>" height="400"></canvas>
+        <canvas id="<?php echo $unique_id; ?>" height="280"></canvas>
     </div>
     <div class="chart-legend">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="10" viewBox="0 0 17 10" fill="none">

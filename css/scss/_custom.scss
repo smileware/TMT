@@ -422,7 +422,10 @@ p {
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    margin-bottom: 100px;
+    // margin-bottom: 100px;
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 30px;
+    }
     a,
     span {
       font-size: 22px;
@@ -558,8 +561,8 @@ p {
                 margin-top: 20px;
 
                 &:hover {
-                    background-color: var(--s-accent-hover) !important;
-                    color: white;
+                    // background-color: var(--s-accent-hover) !important;
+                    color: var(--s-accent-hover);
                     border: none;
                     opacity: 1;
                 }

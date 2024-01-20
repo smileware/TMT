@@ -14,8 +14,9 @@
     <a href="<?php echo $link; ?>" id="<?php echo $link_id; ?>" class="featured-product-link">
         <?php 
             $is_flat = $type['value'] == "flat_products" ? "-flat" : "";
+            $is_hot = $type['value'] == "hot_products" ? "-hot" : "";
         ?>
-        <div class="featured-product <?php echo $is_flat; ?>">
+        <div class="featured-product <?php echo $is_flat; ?> <?php echo $is_hot; ?>">
             <h3 class="featured-product-title">
                 <?php echo $type['label']; ?>
             </h3>

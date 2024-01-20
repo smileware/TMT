@@ -45,8 +45,8 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="pic">
-            <img src="<?php echo $map; ?>" />
+        <div class="pic" style=" line-height: 0; ">
+            <?php echo $map; ?>
         </div>
     </a>
 <?php else:  ?>

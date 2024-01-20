@@ -66,7 +66,7 @@
     </div>
     <!-- Mobile -->
     <div class="tab-content-container _mobile">
-        <div class="s-slider -m1.2" data-slider="slider-all">
+        <div class="s-slider -m1.2 -noloop" data-slider="slider-all">
             <?php 
                 $args = array(
                     'post_type' => 'post',
@@ -84,7 +84,7 @@
         <?php 
             foreach ($cats as $cat) { 
                 ?>
-                    <div class="s-slider -m1.2" data-slider="slider-<?php echo $cat->term_id; ?>">
+                    <div class="s-slider -m1.2 -noloop" data-slider="slider-<?php echo $cat->term_id; ?>">
                         <?php 
                             $args = array(
                                 'cat' => $cat->term_id,
