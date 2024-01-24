@@ -1,6 +1,16 @@
 <div class="alignfull banner-bg">
     <?php 
-        $bg = get_the_post_thumbnail_url( get_the_ID() , 'full');
+        $terms = wp_get_post_terms(get_the_ID(), 'job-type');
+        if($terms) { 
+            foreach ($terms as $term) {
+
+                $bg = get_field("job_taxonomy_banner", $term);
+                print_r($bg);
+                break;
+            }
+        }else { 
+            $bg = get_the_post_thumbnail_url( get_the_ID() , 'full');
+        }
     ?>
     <div class="overlay"></div>
     <div class="bg-image" style="background-image: url('<?php echo $bg; ?>');"></div>
