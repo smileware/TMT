@@ -928,6 +928,28 @@ function acf_webcast_highlight() {
 }
 
 
+/* === Career Carousel === */
+if (function_exists('acf_register_block_type')) {
+    add_action( 'acf/init', 'acf_career_carousel' );
+}
+function acf_career_carousel() { 
+    acf_register_block_type(
+        array(
+            'name' => 'Career Carousel',
+            'title' => 'Career Carousel',
+            'description' => __('Display Career Carousel'),
+            'render_template' => 'template-parts/blocks/career-carousel.php',
+            'icon' => array(
+                'foreground' => '#ffffff',
+                'background' => '#0981C4',
+                'src' => 'megaphone',
+            ),
+            'keywords' => array('download')
+        )
+    );
+}
+
+
 if( !is_admin()) { 
     function fetch_content($url) {
         $ch = curl_init();

@@ -1120,6 +1120,9 @@ body.category .content-item .cat-links {
       &:last-child { 
         border-bottom: none;
       }
+      &.active { 
+        color: var(--s-accent-hover);
+      }
     }
   }
   .ss-right { 
@@ -3106,6 +3109,35 @@ body.category .content-item .cat-links {
       .lottie-animated { 
         opacity: 0;
       }
+    }
+  }
+}
+
+
+.career-carousel { 
+  .career-item { 
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    h3 { 
+      color: var(--s-accent);
+      font-size: 45px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .description { 
+      color: #4F4F4F;
+      font-size: 25px;
+      line-height: 1.2;
+      margin-bottom: 50px;
+    }
+    img {
+      height: 100%;
+      border-radius: 5px;
+      min-height: 550px;
+      height: 550px;
+      object-fit: cover;
     }
   }
 }

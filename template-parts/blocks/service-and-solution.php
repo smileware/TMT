@@ -46,22 +46,39 @@
         ?>
     </div>
 </div>
-
 <script>
-  const ss_items = document.querySelectorAll('.ss-left .ss-item');
+    const isMobile = window.innerWidth <= 768; // Checks if the viewport width is 768px or less
+    const ss_items = document.querySelectorAll('.ss-left .ss-item');
     const images = document.querySelectorAll('.ss-right img');
     let activeIndex = -1; // Tracks the index of the currently active item
 
     ss_items.forEach((item, index) => {
         item.addEventListener('mouseenter', function() {
+            if (!isMobile) {
+                ss_items.forEach(it => it.classList.remove('active'));
+                images.forEach(img => img.classList.remove('active'));
+
+                item.classList.add('active');
+                if(images[index]) {
+                    images[index].classList.add('active');
+                }
+                activeIndex = index;
+            }
+        });
+    });
+
+    if (isMobile) {
+        let currentIndex = 0;
+        setInterval(() => {
             ss_items.forEach(it => it.classList.remove('active'));
             images.forEach(img => img.classList.remove('active'));
 
-            item.classList.add('active');
-            if(images[index]) {
-                images[index].classList.add('active');
+            ss_items[currentIndex].classList.add('active');
+            if(images[currentIndex]) {
+                images[currentIndex].classList.add('active');
             }
-            activeIndex = index;
-        });
-    });
+
+            currentIndex = (currentIndex + 1) % ss_items.length;
+        }, 3000); // Change the interval as needed
+    }
 </script>

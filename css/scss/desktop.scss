@@ -204,6 +204,12 @@ body.headbar-d {
 .main-header {
   &.-breadcrumb-xl { 
     height: 670px;
+    .bg { 
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 }
 

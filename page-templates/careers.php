@@ -89,4 +89,8 @@ get_header(); ?>
     </div>
 </div>
 
+<footer class="entry-footer">
+    <?php seed_entry_footer(); ?>
+</footer>
+
 <?php get_footer(); ?>
